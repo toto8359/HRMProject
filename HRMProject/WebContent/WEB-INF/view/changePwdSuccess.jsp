@@ -8,6 +8,7 @@
 </head>
 <body>
 
+
 암호를 변경했습니다.
 <a href="/HRMProject/">[메인화면으로 돌아가기]</a>
 
