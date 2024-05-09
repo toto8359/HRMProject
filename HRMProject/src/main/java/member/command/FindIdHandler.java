@@ -22,7 +22,7 @@ public class FindIdHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		if (req.getMethod().equalsIgnoreCase("get")) {// get으로 받으면, pocessForm함수로, 다시 joinForm페이지로 돌아가기
+		if (req.getMethod().equalsIgnoreCase("get")) {// get으로 받으면, pocessForm함수로, 다시 findPwForm페이지로 돌아가기
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("post")) {// post로 받으면, 로그인 과정(processSubmit함수)진행하기
 			return processSubmit(req, res);
@@ -32,7 +32,7 @@ public class FindIdHandler implements CommandHandler {
 		}
 	}
 
-	// get으로 받으면, findFrom페이지로 돌아가기
+	// get으로 받으면, findPwFrom페이지로 돌아가기
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		return FORM_VIEW;
 	}
@@ -56,6 +56,7 @@ public class FindIdHandler implements CommandHandler {
 
 		// email에 맞는 아이디 찾아오고, 세션에 저장하기
 		// 찾기 성공 화면으로 전환
+		// email에 맞는 아이디가 없으면, 예외처리
 		try {
 			Member member = findIdService.findIdByEmail(member_email);
 			req.setAttribute("member", member);

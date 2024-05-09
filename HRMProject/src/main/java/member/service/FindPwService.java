@@ -24,7 +24,7 @@ public class FindPwService {
 				throw new MemberNotFoundException();
 			}
 
-			// 이메일에 해당하는 member 반환
+			// 아이디에 해당하는 정보 반환
 			return member;
 
 		} catch (SQLException e) {

@@ -17,8 +17,8 @@ public class FindIdService {
 		try {
 			conn = ConnectionProvider.getConnection();
 
-			// 아이디에 맞는 정보 불러오기
-			// 아이디가 없거나, 비번이 틀리면 예외처리
+			// 이메일에 맞는 정보 불러오기
+			// 이메일에 맞는 정보 없으면 예외처리
 			Member member = memberDao.selectByEmail(conn, member_email);
 			if (member == null) {
 				throw new MemberNotFoundException();

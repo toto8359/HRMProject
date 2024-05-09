@@ -108,7 +108,7 @@ public class JoinRequest {
 		}
 	}
 
-	//
+	//Map형 errors에, value값이 null이거나 비어있으면, 에러 저장
 	private void checkEmpty(Map<String, Boolean> errors, String value, String fieldName) {
 		if (value == null || value.isEmpty()) {
 			errors.put(fieldName, Boolean.TRUE);
