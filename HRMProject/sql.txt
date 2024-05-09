@@ -13,7 +13,7 @@ create table member(
 
 drop table employeePsnl;
 create table employeePsnl(
-    enum varchar2(20) primary key,--사원번호
+    employeeNum varchar2(20) primary key,--사원번호
     employeePsnl_kname varchar2(50),--국문이름
     employeePsnl_ename varchar2(50),--영문이름
     employeePsnl_isForeigner char(1),--내국인 외국인
@@ -26,7 +26,7 @@ create table employeePsnl(
 
 drop table employeeEply;
 create table employeeEply(
-    enum varchar2(20) primary key,--사원번호
+    employeeNum varchar2(20) primary key,--사원번호
     employeeEply_employType char(1),--고용 형태(정규직 비정규직)
     employeeEply_depart varchar2(20),--부서
     employeeEply_position varchar2(20),--직급

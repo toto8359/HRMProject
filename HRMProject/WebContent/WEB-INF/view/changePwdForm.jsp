@@ -9,6 +9,7 @@
 </head>
 <body>
 
+	
    <form action="changePwd.do" method="post">
       <p>
          현재 암호:<br />

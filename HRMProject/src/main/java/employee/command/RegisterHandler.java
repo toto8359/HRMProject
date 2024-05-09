@@ -1,4 +1,4 @@
-package member.command;
+package employee.command;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,18 +6,18 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import employee.service.JoinRequest;
+import employee.service.RegisterService;
 import member.service.DuplicateEmailException;
 import member.service.DuplicateIdException;
-import member.service.JoinRequest;
-import member.service.JoinService;
 import mvc.command.CommandHandler;
 
-public class JoinHandler implements CommandHandler {
+public class RegisterHandler implements CommandHandler {
 
 	// 처리가 안되면, 다시 보여줄 페이지
-	private static final String FORM_VIEW = "/WEB-INF/view/joinForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/employeeInfoManage.jsp";
 	// Handler에서 사용하기 위한 기능을 가진, Service 인스턴스화
-	private JoinService joinService = new JoinService();
+	private RegisterService registerService = new RegisterService();
 
 	// 1.명령어와 관련된 비즈니스 로직 처리(process함수)
 	@Override
@@ -38,17 +38,25 @@ public class JoinHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 
-	// post로 받으면, 회원가입 과정 진행하기
+	// post로 받으면 진행하기
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+
 		// 입력받은 정보를 JoinRequest객체 joinReq에 넣기
 		JoinRequest joinReq = new JoinRequest();
-		joinReq.setMember_id(req.getParameter("member_id"));
-		joinReq.setMember_name(req.getParameter("member_name"));
-		joinReq.setMember_password(req.getParameter("member_password"));
-		joinReq.setConfirmPassword(req.getParameter("confirmPassword"));
-		joinReq.setMember_passwordHint(req.getParameter("member_passwordHint"));
-		joinReq.setMember_passwordHintAnswer(req.getParameter("member_passwordHintAnswer"));
-		joinReq.setMember_email(req.getParameter("member_email"));
+		joinReq.setEmployeeNum(req.getParameter("employeeNum"));
+		joinReq.setEmployeePsnl_kname(req.getParameter("employeePsnl_kname"));
+		joinReq.setEmployeePsnl_ename(req.getParameter("employeePsnl_ename"));
+		joinReq.setEmployeePsnl_isForeigner(req.getParameter("employeePsnl_isForeigner")); // 문자열을 char로 변환
+		joinReq.setEmployeePsnl_residentNumber(req.getParameter("employeePsnl_residentNumber"));
+		joinReq.setEmployeePsnl_adress(req.getParameter("employeePsnl_adress"));
+		joinReq.setEmployeePsnl_phoneNumber(req.getParameter("employeePsnl_phoneNumber"));
+		joinReq.setEmployeePsnl_email(req.getParameter("employeePsnl_email"));
+		joinReq.setEmployeePsnl_sns(req.getParameter("employeePsnl_sns"));
+		joinReq.setEmployeeEply_employType(req.getParameter("employeeEply_employType")); // 문자열을 char로 변환
+		joinReq.setEmployeeEply_depart(req.getParameter("employeeEply_depart"));
+		joinReq.setEmployeeEply_position(req.getParameter("employeeEply_position"));
+		joinReq.setEmployeeEply_join(req.getParameter("employeeEply_join"));
+		joinReq.setEmployeeEply_resignation(req.getParameter("employeeEply_resignation"));
 
 		// 공란 확인을 위해 errors 선언 및 session에 저장
 		Map<String, Boolean> errors = new HashMap<>();
@@ -64,9 +72,9 @@ public class JoinHandler implements CommandHandler {
 		// 회원가입 성공을 알리는 페이지 joinSuccess.jsp로 이동
 		// 중복 에러 발생시, errors.duplicateId속성에 TRUE 넣기
 		try {
-			joinService.join(joinReq);
-			req.setAttribute("member_name", joinReq.getMember_name());
-			return "/WEB-INF/view/joinSuccess.jsp";
+			registerService.Register(joinReq);
+			req.setAttribute("employeePsnl_kname", joinReq.getEmployeePsnl_kname());
+			return "/WEB-INF/view/registerSuccess.jsp";
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;
@@ -75,4 +83,5 @@ public class JoinHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 	}
+
 }
