@@ -73,9 +73,10 @@ public class FindPwHandler implements CommandHandler {
 				return FORM_VIEW;
 			}
 
+			//불러온 객체 세션에 저장 및 성공페이지 돌아가기
 			req.setAttribute("member", member);
 			return "/WEB-INF/view/findPwSuccess.jsp";
-		} catch (MemberNotFoundException e) {
+		} catch (MemberNotFoundException e) {//해당 계정 정보 없으면 예외처리
 			errors.put("noIdFound", Boolean.TRUE);
 			return FORM_VIEW;
 		}
