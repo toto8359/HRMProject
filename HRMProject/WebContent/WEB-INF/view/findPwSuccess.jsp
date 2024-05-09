@@ -9,7 +9,7 @@
 </head>
 <body>
 비밀번호는 ${member.member_password} 입니다. <br/>
-<a href="/board/">[메인화면으로 돌아가기]</a>
+<a href="/HRMProject/">[메인화면으로 돌아가기]</a>
 <a href="login.do">[로그인]</a>
 </body>
 </html>

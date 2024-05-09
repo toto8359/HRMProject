@@ -8,6 +8,6 @@
 </head>
 <body>
 ${param.member_name}님,회원가입에 성공했습니다.<br/>
-<a href="/board/">[메인화면]</a>
+<a href="/HRMProject/">[메인화면]</a>
 </body>
 </html>
