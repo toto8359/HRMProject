@@ -1,0 +1,35 @@
+--sql문은 여기에 적어둘테니, 다 긁어서 복붙하고 실행
+
+drop table member;
+create table member(
+    member_id varchar2(50),
+    member_name varchar2(50),
+    member_password varchar2(50),
+    member_passwordHint varchar2(50),
+    member_passwordHintAnswer varchar2(50),
+    member_email varchar2(50),
+    member_regDate timestamp
+);
+
+drop table employeePsnl;
+create table employeePsnl(
+    enum varchar2(20) primary key,--사원번호
+    employeePsnl_kname varchar2(50),--국문이름
+    employeePsnl_ename varchar2(50),--영문이름
+    employeePsnl_isForeigner char(1),--내국인 외국인
+    employeePsnl_residentNumber varchar2(14),--주민번호
+    employeePsnl_adress varchar2(100),--주소
+    employeePsnl_phoneNumber varchar2(13),--전화번호
+    employeePsnl_email varchar2(30),--이메일
+    employeePsnl_sns varchar2(30)--sns계정
+);
+
+drop table employeeEply;
+create table employeeEply(
+    enum varchar2(20) primary key,--사원번호
+    employeeEply_employType char(1),--고용 형태(정규직 비정규직)
+    employeeEply_depart varchar2(20),--부서
+    employeeEply_position varchar2(20),--직급
+    employeeEply_join timestamp,--입사날짜
+    employeeEply_resignation timestamp--퇴사날짜
+);
