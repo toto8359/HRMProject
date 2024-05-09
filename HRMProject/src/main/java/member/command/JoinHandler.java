@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import exception.DuplicateIdException;
 import member.service.DuplicateEmailException;
-import member.service.DuplicateIdException;
 import member.service.JoinRequest;
 import member.service.JoinService;
 import mvc.command.CommandHandler;

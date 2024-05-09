@@ -7,9 +7,9 @@ import employee.dao.EmployeeEplyDao;
 import employee.dao.EmployeePsnlDao;
 import employee.model.EmployeeEply;
 import employee.model.EmployeePsnl;
+import exception.DuplicateIdException;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
-import member.service.DuplicateIdException;
 
 //사원등록을 위한 기능
 public class RegisterService {

@@ -30,6 +30,7 @@
 			내국인 외국인:<br /> <input type="text" name="employeePsnl_isForeigner"
 				value="${param.employeePsnl_isForeigner}">
 			<c:if test="${errors.employeePsnl_isForeigner}">내국인 외국인 여부를 입력하세요.</c:if>
+			<c:if test="${errors.duplicateResidentNumber}">이미 사원정보가 존재합니다.</c:if>
 		</p>
 		<p>
 			주민번호:<br /> <input type="text" name="employeePsnl_residentNumber"

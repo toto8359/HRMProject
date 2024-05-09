@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import employee.service.JoinRequest;
 import employee.service.RegisterService;
+import exception.DuplicateIdException;
 import member.service.DuplicateEmailException;
-import member.service.DuplicateIdException;
 import mvc.command.CommandHandler;
 
 public class RegisterHandler implements CommandHandler {
@@ -76,10 +76,7 @@ public class RegisterHandler implements CommandHandler {
 			req.setAttribute("employeePsnl_kname", joinReq.getEmployeePsnl_kname());
 			return "/WEB-INF/view/registerSuccess.jsp";
 		} catch (DuplicateIdException e) {
-			errors.put("duplicateId", Boolean.TRUE);
-			return FORM_VIEW;
-		} catch (DuplicateEmailException e) {
-			errors.put("duplicateEmail", Boolean.TRUE);
+			errors.put("duplicateResidentNumber", Boolean.TRUE);
 			return FORM_VIEW;
 		}
 	}
