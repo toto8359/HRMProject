@@ -18,7 +18,6 @@ public class LoginHandler implements CommandHandler {
 
   // 1.get, post 요청에 따른 처리
   // GET、POST リクエストによる処理
-
   @Override
   public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
     if (req.getMethod().equalsIgnoreCase("get")) {
@@ -66,7 +65,6 @@ public class LoginHandler implements CommandHandler {
     // 로그인에 성공하면 sendRedirect로 index.jsp페이지로 이동
     // ログインおよびidと名前をUser形式で受け取り、sessionに保存
     // ログインに成功するとsendRedirectでindex.jspページに移動
-
     try {
       User user = loginService.login(id, password);
       req.getSession().setAttribute("authUser", user);
