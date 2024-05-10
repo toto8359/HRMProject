@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import employee.service.EmployeeListPage;
-import employee.service.InfoRequest;
+import employee.service.EmployeeListPagePart;
+import employee.service.InfoRequestAll;
 import employee.service.ListEmployeeInfoService;
 import employee.service.RegisterService;
 import exception.DuplicateIdException;
@@ -37,15 +37,15 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// get으로 받을 경우:
 		// 1.사원정보 List 띄우기
 
-		// 사원정보List---------------------------------------------------------------------------------------------------------
+		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		EmployeeListPage employeeListPage = listEmployeeInfoService.getEmployeeListPage(pageNo);
-		req.setAttribute("employeeListPage", employeeListPage);
-		// 사원정보List---------------------------------------------------------------------------------------------------------
+		EmployeeListPagePart employeeListPagePart = listEmployeeInfoService.getEmployeeListPagePart(pageNo);
+		req.setAttribute("employeeListPagePart", employeeListPagePart);
+		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 		return FORM_VIEW;
 	}
 
@@ -55,26 +55,26 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// 1.사원정보 List 띄우기
 		// 2.등록 버튼에 따라 등록부 띄우기, 숨기기
 
-		// 사원정보List---------------------------------------------------------------------------------------------------------
+		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 		String pageNoVal = req.getParameter("pageNo");
 		int pageNo = 1;
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		EmployeeListPage employeeListPage = listEmployeeInfoService.getEmployeeListPage(pageNo);
-		req.setAttribute("employeeListPage", employeeListPage);
-		// 사원정보List---------------------------------------------------------------------------------------------------------
+		EmployeeListPagePart employeeListPagePart = listEmployeeInfoService.getEmployeeListPagePart(pageNo);
+		req.setAttribute("employeeListPagePart", employeeListPagePart);
+		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 
-		// 등록하기부분---------------------------------------------------------------------------------------------------------
+		// 2.등록부-------------------------------------------------------------------------------------------------------------
 		String registerForm = req.getParameter("registerForm");
 		if (registerForm == null || registerForm.isEmpty()) {
 			req.setAttribute("registerForm", Boolean.FALSE);// 등록 버튼을 누른 적 없으면 안띄우기
 		} else {
 			req.setAttribute("registerForm", Boolean.TRUE);// 등록 버튼을 눌렀으면 띄우기
 		}
-
+		
 		// 입력받은 정보를 JoinRequest객체 joinReq에 넣기
-		InfoRequest joinReq = new InfoRequest();
+		InfoRequestAll joinReq = new InfoRequestAll();
 		joinReq.setEmployeeNum(req.getParameter("employeeNum"));
 		joinReq.setEmployeePsnl_kname(req.getParameter("employeePsnl_kname"));
 		joinReq.setEmployeePsnl_ename(req.getParameter("employeePsnl_ename"));
@@ -101,7 +101,7 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 
-		// 새로운 회원가입 정보 저장(회원가입하기)
+		// 새로운 사원등록 정보 저장(회원가입하기)
 		// 회원가입 성공을 알리는 페이지 joinSuccess.jsp로 이동
 		// 중복 에러 발생시, errors.duplicateId속성에 TRUE 넣기
 		try {
@@ -112,9 +112,9 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 			errors.put("duplicateResidentNumber", Boolean.TRUE);
 			return FORM_VIEW;
 		}
-		// 등록하기부분---------------------------------------------------------------------------------------------------------
+		// 2.등록부-------------------------------------------------------------------------------------------------------------
 
-		// 마지막 돌아갈 페이지 추가해야됨
+		// 마지막 돌아갈 페이지
 		return FORM_VIEW;
 	}
 

@@ -2,21 +2,19 @@ package employee.service;
 
 import java.util.List;
 
-import employee.model.EmployeeEply;
-
 //사원정보 List 페이징을 위한 VO
-public class EmployeeListPage {
+public class EmployeeListPageAll {
 
 	// 속성
 	private int total;
 	private int currentPage;
-	private List<EmployeeEply> content;
+	private List<InfoRequestAll> content;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
 	// 생성자, 저장된 데이터 갯수에 따라 나머지 속성 결정
-	public EmployeeListPage(int total, int currentPage, int size, List<EmployeeEply> content) {
+	public EmployeeListPageAll(int total, int currentPage, int size, List<InfoRequestAll> content) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
@@ -74,11 +72,11 @@ public class EmployeeListPage {
 		this.currentPage = currentPage;
 	}
 
-	public List<EmployeeEply> getContent() {
+	public List<InfoRequestAll> getContent() {
 		return content;
 	}
 
-	public void setContent(List<EmployeeEply> content) {
+	public void setContent(List<InfoRequestAll> content) {
 		this.content = content;
 	}
 

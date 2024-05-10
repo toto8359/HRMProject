@@ -2,7 +2,7 @@ package employee.service;
 
 import java.util.Map;
 
-public class InfoRequest {
+public class InfoRequestAll {
 
 	private String employeeNum; // 사원번호
 	private String employeePsnl_kname; // 국문이름
@@ -43,12 +43,12 @@ public class InfoRequest {
 	}
 
 	// 생성자
-	public InfoRequest() {
+	public InfoRequestAll() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public InfoRequest(String employeeNum, String employeePsnl_kname, String employeePsnl_ename,
+	public InfoRequestAll(String employeeNum, String employeePsnl_kname, String employeePsnl_ename,
 			String employeePsnl_isForeigner, String employeePsnl_residentNumber, String employeePsnl_adress,
 			String employeePsnl_phoneNumber, String employeePsnl_email, String employeePsnl_sns,
 			String employeeEply_employType, String employeeEply_depart, String employeeEply_position,
