@@ -10,7 +10,14 @@
 </head>
 
 <body>
-
+<div class="menu-left">
+	<div class="left-menu-btn">
+		<a class="menu-item" href="/HRMProject">HOME</a>
+	</div>
+	<div class="left-menu-btn">
+        <a class="menu-item" href="javascript:history.back()">뒤로가기</a>
+    </div>
+</div>
 	<div class="module1">
 		<h3>아이디는 ${member.member_id} 입니다.</h3>
 	</div>

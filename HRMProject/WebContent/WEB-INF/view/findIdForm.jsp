@@ -9,8 +9,14 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-
-	<div class="login-container">
+<div class="menu-left">
+	<div class="left-menu-btn">
+		<a class="menu-item" href="/HRMProject">HOME</a>
+	</div>
+	<div class="left-menu-btn">
+        <a class="menu-item" href="javascript:history.back()">뒤로가기</a>
+    </div>
+</div>
 		<form action="findId.do" method="post" class="module">
 			<div class="page-answer">
 				<h3>ID 찾기</h3>

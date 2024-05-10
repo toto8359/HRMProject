@@ -9,6 +9,20 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+<script>
+    // 뒤로가기 버튼을 클릭했을 때 이전 페이지로 이동
+    function goBack() {
+        window.history.back();
+    }
+</script>
+<div class="menu-left">
+	<div class="left-menu-btn">
+		<a class="menu-item" href="/HRMProject">HOME</a>
+	</div>
+	<div class="left-menu-btn">
+        <a class="menu-item" href="javascript:history.back()">뒤로가기</a>
+    </div>
+</div>
 	<div class="login-container">
 		<!-- 페이지를 감싸는 컨테이너 -->
 		<form action="login.do" method="post" class="module">

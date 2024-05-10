@@ -9,9 +9,34 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-
+<div class="menu-left">
+    <p style="color: black;">${authUser.member_name}님, 안녕하세요.</p>
+	<div class="left-menu-btn">
+		<a class="menu-item" href="/HRMProject">HOME</a>
+	</div>
+	<div class="left-menu-btn">
+        <a class="menu-item" href="javascript:history.back()">뒤로가기</a>
+    </div>
+        <div class="left-menu-btn">
+        	<a  href="login.do">로그아웃 하기</a>
+        </div>
+        <div class="left-menu-btn">
+        <a class="menu-item" href="employeeInfoManage.do">사원정보관리</a>
+        </div>
+        <div class="left-menu-btn">
+        <a class="menu-item" href="listEmployeeInfo.do">사원현황</a>
+        </div>
+        <div class="left-menu-btn">
+        <a class="menu-item" href="article/list.do">인사기록카드</a>
+        </div>
+        <div class="left-menu-btn">
+        <a class="menu-item" href="article/list.do">제직증명서 발급</a>
+        </div>
+        <div class="left-menu-btn">
+        <a class="menu-item" href="article/list.do">제직증명서 발급대장</a>
+        </div>
+</div>
 	<div class="login-container">
-	
 	<!-- 	사용자의 입력 제출시(submit) changePwd.do로 데이터 전송(action) 전송 방식은 post -->
 		<form action="changePwd.do" method="post" class="module">
 			<div class="page-answer">

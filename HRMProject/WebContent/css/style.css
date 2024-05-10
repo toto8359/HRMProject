@@ -323,6 +323,39 @@ html, body {
   box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
 }
 
+.left-menu-btn a {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 5px 0; /* 좌우 여백을 0으로 변경 */
+  padding: 8px; /* 버튼 내부 여백 */
+  font-size: 15px;
+  height: 28px; /* 버튼 높이 조절 */
+  line-height: 28px; /* 버튼 높이와 동일하게 설정 */
+  width: 150px;
+  background-color: #444; /* 진한 회색 */
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s; /* transform 트랜지션 추가 */
+}
+
+.left-menu-btn a:hover,
+.left-menu-btn a:focus {
+  background-color: #555; /* 마우스 호버 시 조금 더 진한 회색으로 변경 */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 마우스 호버 시 그림자 효과 추가 */
+  transform: scale(1.1); /* 마우스 호버 시 크기 확대 애니메이션 */
+}
+
+.left-menu-btn a:active,
+.left-menu-btn a.active {
+  background-color: #333; /* 클릭 시 더 진한 회색으로 변경 */
+  box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9); /* 클릭 시 크기 축소 애니메이션 */
+}
+
+
+
 .custom-select {
     appearance: none; /* 기본 스타일 감추기 */
     -webkit-appearance: none;
@@ -335,4 +368,37 @@ html, body {
     font-size: 14px; /* 글꼴 크기 조정 */
     cursor: pointer; /* 커서를 포인터로 변경하여 호버 효과를 줌 */
 }
+
+/* index */
+.menu-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0; /* 상단에서 하단까지 확장되도록 수정 */
+    width: 200px;
+    background-color: #d0d0d0; /* 연한 회색 배경색으로 변경 */
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 메뉴 아이템을 상단에 정렬 */
+    align-items: stretch; /* 메뉴 너비에 맞게 아이템들을 늘림 */
+     z-index: 100;
+}
+
+.menu-left div {
+    margin-bottom: 10px;
+    padding: 8px; /* 아이템 안쪽 여백 추가 */
+    text-decoration: none;
+    color: #333;
+    display: block; /* 링크를 블록 요소로 변경하여 박스 안에 꽉 차게 함 */
+}
+
+.menu-left div:hover {
+    color: #666;
+}
+
+
+
+
 
