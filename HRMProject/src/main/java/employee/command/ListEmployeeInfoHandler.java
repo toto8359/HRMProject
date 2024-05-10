@@ -25,5 +25,4 @@ public class ListEmployeeInfoHandler implements CommandHandler {
 	      return "/WEB-INF/view/employeeInfoManage.jsp";
 
 	   }
-	
 }
