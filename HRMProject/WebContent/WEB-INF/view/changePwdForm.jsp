@@ -11,6 +11,7 @@
 	
 <!-- 	사용자의 입력 제출시(submit) changePwd.do로 데이터 전송(action) 전송 방식은 post -->
 
+	
    <form action="changePwd.do" method="post">
       <p>
          현재 암호:<br />

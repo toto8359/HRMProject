@@ -1,4 +1,4 @@
-package member.service;
+package exception;
 
 public class InvalidPasswordConfirmException extends RuntimeException {
 

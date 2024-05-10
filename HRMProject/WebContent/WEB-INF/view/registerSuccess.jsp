@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-암호를 변경했습니다.
-<a href="/HRMProject/">[메인화면으로 돌아가기]</a>
-
+사원정보 입력에 성공했습니다.
+<a href="register.do">[사원정보 관리로 돌아가기]</a>
 </body>
 </html>

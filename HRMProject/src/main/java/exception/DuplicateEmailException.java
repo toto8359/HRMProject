@@ -1,4 +1,4 @@
-package member.service;
+package exception;
 
 public class DuplicateEmailException extends RuntimeException {
 

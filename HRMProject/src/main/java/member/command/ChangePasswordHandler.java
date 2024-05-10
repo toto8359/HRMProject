@@ -5,10 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import auth.service.User;
+import exception.InvalidPasswordConfirmException;
+import exception.InvalidPasswordException;
+import exception.MemberNotFoundException;
 import member.service.ChangePasswordService;
-import member.service.InvalidPasswordConfirmException;
-import member.service.InvalidPasswordException;
-import member.service.MemberNotFoundException;
 import mvc.command.CommandHandler;
 
 public class ChangePasswordHandler implements CommandHandler {
