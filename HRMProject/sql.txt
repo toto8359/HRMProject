@@ -16,7 +16,7 @@ create table employeePsnl(
     employeeNum varchar2(20) primary key,--사원번호
     employeePsnl_kname varchar2(50),--국문이름
     employeePsnl_ename varchar2(50),--영문이름
-    employeePsnl_isForeigner char(1),--내국인 외국인
+    employeePsnl_isForeigner varchar2(20),--내국인 외국인
     employeePsnl_residentNumber varchar2(14),--주민번호
     employeePsnl_adress varchar2(100),--주소
     employeePsnl_phoneNumber varchar2(13),--전화번호
@@ -27,7 +27,7 @@ create table employeePsnl(
 drop table employeeEply;
 create table employeeEply(
     employeeNum varchar2(20) primary key,--사원번호
-    employeeEply_employType char(1),--고용 형태(정규직 비정규직)
+    employeeEply_employType varchar2(20),--고용 형태(정규직 비정규직)
     employeeEply_depart varchar2(20),--부서
     employeeEply_position varchar2(20),--직급
     employeeEply_join timestamp,--입사날짜
