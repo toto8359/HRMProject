@@ -19,7 +19,7 @@ public class RegisterService {
 	private EmployeeEplyDao employeeEplyDao = new EmployeeEplyDao();
 
 	// JoinRequest객체로 정보를 받아,
-	public void Register(JoinRequest joinReq) {
+	public void Register(InfoRequest joinReq) {
 		Connection conn = null;
 		try {
 			// db와의 소통을 위해 connection 생성
