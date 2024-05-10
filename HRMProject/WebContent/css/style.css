@@ -1,0 +1,338 @@
+@charset "UTF-8";
+
+/* 배경색 설정 */
+html, body {
+  color: #fff;
+  background-color:#f0f0f0;
+  font-family:helvetica;
+  background:url('http://clevertechie.com/img/bnet-bg.jpg') #0f2439 no-repeat center top;
+   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  
+  padding: 0;
+  overflow: auto;
+}
+
+.outer-container {
+ background-color: #f2f2f2; /* 배경색 설정 */
+ padding: 20px; /* 안쪽 여백 설정 */
+ border-radius: 10px; /* 테두리 모서리 둥글게 설정 */
+}
+
+.div-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 세로로 정렬 */
+}
+
+.input-group {
+	flex-grow: 1;
+	margin-right: 10px;
+    margin-bottom: 10px; /* 입력 그룹 간격 조절 */
+}
+
+.input-group:last-child {
+    margin-right: 0; /* 마지막 입력 그룹의 오른쪽 간격 제거 */
+}
+
+.input-group label {
+    margin-bottom: 5px; /* 라벨과 입력란 사이 간격 조절 */
+}
+
+/* 입력 요소 스타일 */
+.login-input{
+  height:30px;
+  width:100%;;
+  display: flex;
+  vertical-align: middle;
+  height: 34px;
+  padding: 0 10px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: #000000;
+  color: rgba(255, 255, 255, 0.7);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 2px;
+
+}
+
+.module {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 65%;
+  width: 450px;
+  text-align: center;
+}
+
+.module1 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 65%;
+  width: 450px;
+  text-align: center;
+  margin-top: 140px;
+  padding-top: 20px;
+}
+
+
+.login-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto; /* 세로 스크롤을 자동으로 생성합니다. */
+}
+
+.form-wrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+/* 폼 스타일 */
+.login-form {
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 에러 메시지 스타일 */
+.error-message {
+  color: red;
+}
+
+.alert {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 4px 20px 4px 20px;
+  font-size: 13px;
+  line-height: 20px;
+  margin-bottom: 20px;
+  text-shadow: none;
+  position: relative;
+  background-color: #272e3b;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #000;
+  box-shadow: 0 0 0 1px #363d49 inset, 0 5px 10px rgba(0, 0, 0, 0.75);
+}
+.alert-error {
+	position: relative;
+	top: 10px;
+  color: #f00;
+  background-color: #360e10;
+  box-shadow: 0 0 0 1px #551e21 inset, 0 5px 10px rgba(0, 0, 0, 0.75);
+}
+
+.page-answer {
+  text-align: center; /* h3를 수평 중앙 정렬합니다. */
+  margin-bottom: 20px; /* h3 아래 여백을 추가합니다. */
+}
+
+.login-link-wrapper {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-link-wrapper a {
+  color: #999; /* 기본 색상 */
+}
+
+.login-link-wrapper a:hover,
+.login-link-wrapper a:visited,
+.login-link-wrapper a:active {
+  color: #999; /* 원하는 색상 */
+}
+
+
+.placeholder-gray {
+  color: #999; /* 회색 */
+}
+
+
+.btn {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 3px 0;
+  padding: 6px 20px;
+  font-size: 15px;
+  line-height: 20px;
+  height: 34px;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #00aeff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+  border-radius: 2px;
+  -webkit-transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn.active,
+.btn:active {
+  padding: 7px 19px 5px 21px;
+}
+.btn.disabled:active,
+.btn[disabled]:active,
+.btn.disabled.active,
+.btn[disabled].active {
+  padding: 6px 20px !important;
+}
+.btn:hover,
+.btn:focus {
+  background-color: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+}
+.btn:active,
+.btn.active {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
+}
+.btn-primary {
+  background-color: #098cc8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+  border-radius: 2px;
+  -webkit-transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+  background-image: -webkit-linear-gradient(top, #0f9ada, #0076ad);
+  background-image: linear-gradient(to bottom, #0f9ada, #0076ad);
+  border: 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #21b0f1;
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #006899;
+  color: rgba(255, 255, 255, 0.7);
+  border-color: transparent;
+  box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-image: -webkit-linear-gradient(top, #37c0ff, #0097dd);
+  background-image: linear-gradient(to bottom, #37c0ff, #0097dd);
+}
+.btn-primary:active,
+.btn-primary.active {
+  background-image: -webkit-linear-gradient(top, #006ea1, #00608d);
+  background-image: linear-gradient(to bottom, #006ea1, #00608d);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6) inset, 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn-container a {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px 20px;
+  padding: 3px 20px;
+  font-size: 15px;
+  height: 28px; /* 버튼 높이 조절 */
+  line-height: 28px; /* 버튼 높이와 동일하게 설정 */
+  background-color: #098cc8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+  border-radius: 2px;
+  transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-container a:hover,
+.btn-container a:focus {
+  background-color: #21b0f1;
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+}
+
+.btn-container a:active,
+.btn-container a.active {
+  background-color: #006899;
+  color: rgba(255, 255, 255, 0.7);
+  border-color: transparent;
+  box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
+}
+
+.btn-container1 a {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px 20px;
+  margin-right: 10px;
+  padding: 3px 20px;
+  font-size: 15px;
+  height: 28px; /* 버튼 높이 조절 */
+  line-height: 28px; /* 버튼 높이와 동일하게 설정 */
+  background-color: #098cc8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+  border-radius: 2px;
+  transition: background-color 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-container1 a:hover,
+.btn-container1 a:focus {
+  background-color: #21b0f1;
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+}
+
+.btn-container1 a:active,
+.btn-container1 a.active {
+  background-color: #006899;
+  color: rgba(255, 255, 255, 0.7);
+  border-color: transparent;
+  box-shadow: inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5);
+}
+
+.custom-select {
+    appearance: none; /* 기본 스타일 감추기 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: black; /* 선택 창 배경색 검정색 */
+    color: gray; /* 선택 창 안에 있는 텍스트 회색 */
+    padding: 8px 16px; /* 내부 패딩 설정 */
+    border: none; /* 테두리 없애기 */
+    border-radius: 4px; /* 모서리를 둥글게 */
+    font-size: 14px; /* 글꼴 크기 조정 */
+    cursor: pointer; /* 커서를 포인터로 변경하여 호버 효과를 줌 */
+}
+

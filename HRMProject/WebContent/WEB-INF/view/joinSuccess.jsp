@@ -5,9 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-${param.member_name}님,회원가입에 성공했습니다.<br/>
-<a href="/HRMProject/">[메인화면]</a>
+<div class="module1">
+	<h3>${param.member_name}님,회원가입에 성공했습니다.</h3>
+</div>
+
+<div class="login-container">
+	<div class="btn-container1">
+		<a href="/HRMProject/">메인화면</a>
+	</div>
+</div>
 </body>
 </html>

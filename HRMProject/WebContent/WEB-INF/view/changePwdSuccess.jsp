@@ -5,12 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
+<div class="module1">
+	<h3>암호를 변경했습니다.</h3>
+</div>
 
-암호를 변경했습니다.
-<a href="/HRMProject/">[메인화면으로 돌아가기]</a>
-
+<div class="login-container">
+	<div class="btn-container1">
+		<a href="/HRMProject/">메인화면</a>
+	</div>
+</div>
 </body>
 </html>
