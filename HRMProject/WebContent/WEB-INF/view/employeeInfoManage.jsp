@@ -32,8 +32,8 @@
 			<tr>
 				<td>${employeeEply.employeeNum}</td>
 				<td><a
-					href="read.do?no=${employeeEply.employeeNum}&pageNo=${employeeListPage.currentPage}">
-						<c:out value="${employeeEply.employeeEply_employType}" /><!-- 이름 클릭으로 바꿔야 할 듯 -->
+					href="read.do?no=${employeeEply.employeeNum}&pageNo=${employeeListPage.currentPage}"><!-- 나중에 수정해야함 -->
+						<c:out value="${employeeEply.employeeEply_employType}" /><!-- 이름 클릭으로 바꿔야 할 듯, InfoRequest로 이름 같이 받아서 -->
 				</a></td>
 				<td>${employeeEply.employeeEply_depart}</td>
 				<td>${employeeEply.employeeEply_position}</td>
@@ -55,7 +55,7 @@
 	</table>
 
 	<!-- 등록창 -->
-	<form action="register.do" method="POST">
+	<form action="employeeInfoManage.do" method="POST">
 		<!-- 등록 버튼을 누른 적이 없으면 or 등록이 완료되면 -->
 		<c:if test="${!registerForm}">
 			<input type="hidden" name="registerForm" value="registerForm" />
