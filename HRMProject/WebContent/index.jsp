@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원제 게시판 예제</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <div align="center">
