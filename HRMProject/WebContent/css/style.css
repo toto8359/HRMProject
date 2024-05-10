@@ -26,13 +26,15 @@ html, body {
 .div-inline {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* 세로로 정렬 */
+    align-items: center; /* 수직 정렬 */
 }
 
 .input-group {
-	flex-grow: 1;
-	margin-right: 10px;
+    margin-right: 10px;
     margin-bottom: 10px; /* 입력 그룹 간격 조절 */
+    display: flex;
+    flex-direction: column; /* 수직으로 요소 배치 */
+    align-items: flex-start; /* 왼쪽 정렬에서 중앙 정렬로 변경 */
 }
 
 .input-group:last-child {
@@ -41,7 +43,9 @@ html, body {
 
 .input-group label {
     margin-bottom: 5px; /* 라벨과 입력란 사이 간격 조절 */
+    align-self: center; /* 수정: 라벨을 가운데 정렬 */
 }
+
 
 /* 입력 요소 스타일 */
 .login-input{
