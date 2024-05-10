@@ -15,6 +15,44 @@ public class EmployeeDao {
 	
 	//두 테이블의 정보를 한 번에 가져올 때
 	
+	//사원번호로 읽어들이기
+	public InfoRequestAll selectByEmployeeNum(Connection conn, String employeeNum) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			pstmt = conn.prepareStatement("select\r\n"
+					+ "employeePsnl.employeeNum as employeeNum,\r\n"
+					+ "employeePsnl_kname,--국문이름\r\n"
+					+ "employeePsnl_ename,--영문이름\r\n"
+					+ "employeePsnl_isForeigner,--내국인 외국인\r\n"
+					+ "employeePsnl_residentNumber,--주민번호\r\n"
+					+ "employeePsnl_adress,--주소\r\n"
+					+ "employeePsnl_phoneNumber,--전화번호\r\n"
+					+ "employeePsnl_email,--이메일\r\n"
+					+ "employeePsnl_sns,--sns계정\r\n"
+					+ "employeeEply_employType,--고용 형태(정규직 비정규직)\r\n"
+					+ "employeeEply_depart,--부서\r\n"
+					+ "employeeEply_position,--직급\r\n"
+					+ "employeeEply_join,--입사날짜\r\n"
+					+ "employeeEply_resignation--퇴사날짜 \r\n"
+					+ "from employeePsnl \r\n"
+					+ "inner join employeeEply\r\n"
+					+ "on employeePsnl.employeeNum = employeeEply.employeeNum\r\n"
+					+ "WHERE employeePsnl.employeeNum = ?");
+			pstmt.setString(1, employeeNum);
+			rs = pstmt.executeQuery();
+			InfoRequestAll employee = null;
+			if (rs.next()) {
+				employee = convertEmployeeEply(rs);
+			}
+			return employee;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 	
 	// 사원정보 list를 위한 CRUD - Read
 	public int selectCount(Connection conn) throws SQLException {

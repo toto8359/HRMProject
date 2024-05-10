@@ -13,8 +13,9 @@
 	<br />
 	<br />
 	<!-- 안내창 -->
-	<c:if test="${!empty employeePsnl_kname}">사원 ${employeePsnl_kname}의 등록을 완료했습니다.</c:if>
+	<c:if test="${!empty employeePsnl_kname}">사원 ${employeePsnl_kname}의 등록을 완료했습니다.</c:if><br/>
 
+	사원목록<br/>
 	<!-- 사원정보목록창 -->
 	<table border="1">
 		<tr>
@@ -33,10 +34,11 @@
 				<td>${employeeEply.employeeNum}</td>
 				<td>${employeeEply.employeeEply_depart}</td>
 				<td>${employeeEply.employeeEply_position}</td>
-				<td><a
-					href="read.do?no=${employeeEply.employeeNum}&pageNo=${employeeListPage.currentPage}"><!-- 나중에 수정해야함 ,employNum으로-->
-						<c:out value="${employeeEply.employeePsnl_kname}" /><!-- 이름 클릭으로 바꿔야 할 듯, InfoRequest로 이름 같이 받아서 -->
-				</a></td>
+				<!-- get으로 보내기 -->
+				<td>
+				<a href="employeeInfoManage.do?employeeNum=${employeeEply.employeeNum}&pageNo=${employeeListPagePart.currentPage}"><!-- 나중에 수정해야함 ,employNum으로-->
+						<c:out value="${employeeEply.employeePsnl_kname}" /></a>
+				</td>
 			</tr>
 		</c:forEach>
 		<!-- 페이징 -->
@@ -53,16 +55,19 @@
 			</tr>
 		</c:if>
 	</table>
-
+	<br/>
+	
+	
 	<!-- 등록창 -->
-	<form action="employeeInfoManage.do" method="POST">
-		<!-- 등록 버튼을 누른 적이 없으면 or 등록이 완료되면 -->
+	<!-- 등록 버튼을 누른 적이 없으면 or 등록이 완료되면 -->
+	<form action="employeeInfoManage.do" method="get">
 		<c:if test="${!registerForm}">
 			<input type="hidden" name="registerForm" value="registerForm" />
 			<input type="submit" value="등록">
 		</c:if>
-
-		<!-- 등록 버튼을 누르면 -->
+	</form>
+	<!-- 정보입력 후 등록 버튼을 누르면 -->
+	<form action="employeeInfoManage.do" method="POST">
 		<c:if test="${registerForm}">
 			<p>
 				사원번호:<br /> <input type="text" name="employeeNum"
@@ -133,11 +138,77 @@
 			<p>
 				퇴사날짜:<br /> <input type="text" name="employeeEply_resignation"
 					value="${param.employeeEply_resignation}">
-				<c:if test="${errors.employeeEply_resignation}">퇴사날짜를 입력하세요.</c:if>
 			</p>
 			<input type="submit" value="등록">
 		</c:if>
 	</form>
+	
+	<!-- 사원정보창 -->
+	<c:if test="${readInfo}">
+		<table>
+	    <tr>
+	        <th>항목</th>
+	        <th>정보</th>
+	    </tr>
+	    <tr>
+	        <td>사원번호</td>
+	        <td>${infoRequestAll.employeeNum}</td>
+	    </tr>
+	    <tr>
+	        <td>국문이름</td>
+	        <td>${infoRequestAll.employeePsnl_kname}</td>
+	    </tr>
+	    <tr>
+	        <td>영문이름</td>
+	        <td>${infoRequestAll.employeePsnl_ename}</td>
+	    </tr>
+	    <tr>
+	        <td>내국인 외국인</td>
+	        <td>${infoRequestAll.employeePsnl_isForeigner}</td>
+	    </tr>
+	    <tr>
+	        <td>주민번호</td>
+	        <td>${infoRequestAll.employeePsnl_residentNumber}</td>
+	    </tr>
+	    <tr>
+	        <td>주소</td>
+	        <td>${infoRequestAll.employeePsnl_adress}</td>
+	    </tr>
+	    <tr>
+	        <td>전화번호</td>
+	        <td>${infoRequestAll.employeePsnl_phoneNumber}</td>
+	    </tr>
+	    <tr>
+	        <td>이메일</td>
+	        <td>${infoRequestAll.employeePsnl_email}</td>
+	    </tr>
+	    <tr>
+	        <td>SNS계정</td>
+	        <td>${infoRequestAll.employeePsnl_sns}</td>
+	    </tr>
+	    <tr>
+	        <td>고용 형태</td>
+	        <td>${infoRequestAll.employeeEply_employType}</td>
+	    </tr>
+	    <tr>
+	        <td>부서</td>
+	        <td>${infoRequestAll.employeeEply_depart}</td>
+	    </tr>
+	    <tr>
+	        <td>직급</td>
+	        <td>${infoRequestAll.employeeEply_position}</td>
+	    </tr>
+	    <tr>
+	        <td>입사날짜</td>
+	        <td>${infoRequestAll.employeeEply_join}</td>
+	    </tr>
+	    <tr>
+	        <td>퇴사날짜</td>
+	        <td>${infoRequestAll.employeeEply_resignation}</td>
+	    </tr>
+		</table>
+	</c:if>
+	
 
 </body>
 </html>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import employee.service.EmployeeListPagePart;
 import employee.service.InfoRequestAll;
 import employee.service.ListEmployeeInfoService;
+import employee.service.ReadEmployeeInfoServiece;
 import employee.service.RegisterService;
 import exception.DuplicateIdException;
 import mvc.command.CommandHandler;
@@ -18,6 +19,7 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/employeeInfoManage.jsp";
 	RegisterService registerService = new RegisterService();
 	ListEmployeeInfoService listEmployeeInfoService = new ListEmployeeInfoService();
+	ReadEmployeeInfoServiece readEmployeeInfoServiece = new ReadEmployeeInfoServiece();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -36,6 +38,8 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		// get으로 받을 경우:
 		// 1.사원정보 List 띄우기
+		// 2.등록버튼 띄워두기 (get)
+		// 3.List의 이름 누르면 해당사원 정보 보여주기
 
 		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 		String pageNoVal = req.getParameter("pageNo");
@@ -46,6 +50,26 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		EmployeeListPagePart employeeListPagePart = listEmployeeInfoService.getEmployeeListPagePart(pageNo);
 		req.setAttribute("employeeListPagePart", employeeListPagePart);
 		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
+
+		// 2.등록버튼 띄워두기(get)---------------------------------------------------------------------------------------------
+		String registerForm = req.getParameter("registerForm");
+		if (registerForm == null || registerForm.isEmpty()) {
+			req.setAttribute("registerForm", Boolean.FALSE);// 등록 버튼을 누른 적 없으면 안띄우기
+		} else {
+			req.setAttribute("registerForm", Boolean.TRUE);// 등록 버튼을 눌렀으면 띄우기
+		}
+		// 2.등록버튼 띄워두기(get)---------------------------------------------------------------------------------------------
+
+		// 3.이름 누르면 정보 보여주기------------------------------------------------------------------------------------------
+		String employeeNum = req.getParameter("employeeNum");
+		if( !(employeeNum == null || employeeNum.isEmpty()) ) {
+			InfoRequestAll infoRequestAll = readEmployeeInfoServiece.getInfoRequestAll(employeeNum);
+			req.setAttribute("infoRequestAll", infoRequestAll);
+			req.setAttribute("readInfo", Boolean.TRUE);
+		}
+		// 3.이름 누르면 정보 보여주기------------------------------------------------------------------------------------------
+
+		
 		return FORM_VIEW;
 	}
 
@@ -53,7 +77,8 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 		// post으로 받을 경우
 		// 1.사원정보 List 띄우기
-		// 2.등록 버튼에 따라 등록부 띄우기, 숨기기
+		// 2.등록 버튼 눌렀을 때,입력창 보여주기
+		// 3.사원정보를 등록했을 때, 해당 사원 정보 보여주기
 
 		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 		String pageNoVal = req.getParameter("pageNo");
@@ -114,7 +139,14 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		}
 		// 2.등록부-------------------------------------------------------------------------------------------------------------
 
+		// 3.등록한 사원 정보 보여주기------------------------------------------------------------------------------------------
+		req.setAttribute("infoRequestAll", joinReq);
+		req.setAttribute("readInfo", Boolean.TRUE);
+		// 3.등록한 사원 정보 보여주기------------------------------------------------------------------------------------------
+
+		
 		// 마지막 돌아갈 페이지
+		// get으로 돌아가기 때문에 등록창은 꺼짐
 		return FORM_VIEW;
 	}
 

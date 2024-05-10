@@ -32,7 +32,7 @@ public class InfoRequestAll {
 		checkEmpty(errors, employeeEply_depart, "employeeEply_depart");
 		checkEmpty(errors, employeeEply_position, "employeeEply_position");
 		checkEmpty(errors, employeeEply_join, "employeeEply_join");
-		checkEmpty(errors, employeeEply_resignation, "employeeEply_resignation");
+//		checkEmpty(errors, employeeEply_resignation, "employeeEply_resignation"); //필수정보 아니면 주석처리하여 비우기
 	}
 
 	// Map형 errors에, value값이 null이거나 비어있으면, 에러 저장
