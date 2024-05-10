@@ -3,7 +3,7 @@ package employee.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import employee.service.EmployeeListPage;
+import employee.service.EmployeeListPagePart;
 import employee.service.ListEmployeeInfoService;
 import mvc.command.CommandHandler;
 
@@ -19,11 +19,10 @@ public class ListEmployeeInfoHandler implements CommandHandler {
 	      if(pageNoVal != null) {
 	         pageNo = Integer.parseInt(pageNoVal);
 	      }
-	      EmployeeListPage employeeListPage = listEmployeeInfoService.getEmployeeListPage(pageNo);
+	      EmployeeListPagePart employeeListPage = listEmployeeInfoService.getEmployeeListPagePart(pageNo);
 	      req.setAttribute("employeeListPage", employeeListPage);
 	      
 	      return "/WEB-INF/view/employeeInfoManage.jsp";
 
 	   }
-	
 }

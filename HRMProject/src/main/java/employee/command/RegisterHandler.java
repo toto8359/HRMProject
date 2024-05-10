@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import employee.service.JoinRequest;
+import employee.service.InfoRequestAll;
 import employee.service.RegisterService;
 import exception.DuplicateIdException;
 import mvc.command.CommandHandler;
@@ -48,7 +48,7 @@ public class RegisterHandler implements CommandHandler {
 		}
 
 		// 입력받은 정보를 JoinRequest객체 joinReq에 넣기
-		JoinRequest joinReq = new JoinRequest();
+		InfoRequestAll joinReq = new InfoRequestAll();
 		joinReq.setEmployeeNum(req.getParameter("employeeNum"));
 		joinReq.setEmployeePsnl_kname(req.getParameter("employeePsnl_kname"));
 		joinReq.setEmployeePsnl_ename(req.getParameter("employeePsnl_ename"));

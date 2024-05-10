@@ -8,9 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import article.model.Article;
-import article.model.Writer;
 import employee.model.EmployeeEply;
+import employee.service.InfoRequestPart;
 import jdbc.JdbcUtil;
 
 public class EmployeeEplyDao {
@@ -105,15 +104,27 @@ public class EmployeeEplyDao {
 	}
 
 	//사원정보 list를 위한 CRUD - Read
-	public List<EmployeeEply> select(Connection conn, int startRow, int size) throws SQLException {
+	public List<InfoRequestPart> select(Connection conn, int startRow, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM (SELECT ROWNUM AS rnum, a.* FROM (SELECT * FROM employeeEply ORDER BY employeeNum DESC) a WHERE ROWNUM <= ?) WHERE rnum >= ?");
+			pstmt = conn.prepareStatement("SELECT * FROM \r\n"
+					+ "    (SELECT ROWNUM AS rnum, a.* FROM \r\n"
+					+ "        (SELECT * FROM (select\r\n"
+					+ "            employeePsnl.employeeNum as employeeNum,\r\n"
+					+ "            employeePsnl_kname,--국문이름\r\n"
+					+ "            employeeEply_depart,--부서\r\n"
+					+ "            employeeEply_position--직급\r\n"
+					+ "            from employeePsnl \r\n"
+					+ "            inner join employeeEply\r\n"
+					+ "            on employeePsnl.employeeNum = employeeEply.employeeNum) \r\n"
+					+ "        ORDER BY employeeNum DESC) \r\n"
+					+ "    a WHERE ROWNUM <= ?) \r\n"
+					+ "WHERE rnum >= ?");
 			pstmt.setInt(1, startRow + size);
 			pstmt.setInt(2, startRow+1);
 			rs = pstmt.executeQuery();
-			List<EmployeeEply> result = new ArrayList<>();
+			List<InfoRequestPart> result = new ArrayList<>();
 			while (rs.next()) {
 				result.add(convertEmployeeEply(rs));
 			}
@@ -124,13 +135,11 @@ public class EmployeeEplyDao {
 		}
 	}
 
-	private EmployeeEply convertEmployeeEply(ResultSet rs) throws SQLException {
-		return new EmployeeEply(
+	private InfoRequestPart convertEmployeeEply(ResultSet rs) throws SQLException {
+		return new InfoRequestPart(
 				rs.getString("employeeNum"),
-				rs.getString("employeeEply_employType"),
+				rs.getString("employeePsnl_kname"),
 				rs.getString("employeeEply_depart"),
-				rs.getString("employeeEply_position"),
-				rs.getString("employeeEply_join"),
-				rs.getString("employeeEply_resignation"));
+				rs.getString("employeeEply_position"));
 	}
 }

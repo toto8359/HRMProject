@@ -23,39 +23,39 @@
 			<td>직급</td>
 			<td>이름</td>
 		</tr>
-		<c:if test="${employeeListPage.hasNoEmployeeList()}">
+		<c:if test="${employeeListPagePart.hasNoEmployeeList()}">
 			<tr>
 				<td colspan="4">게시글이 없습니다.</td>
 			</tr>
 		</c:if>
-		<c:forEach var="employeeEply" items="${employeeListPage.content}"><!-- page의 List<employeeEply> content 뜻 -->
+		<c:forEach var="employeeEply" items="${employeeListPagePart.content}"><!-- page의 List<employeeEply> content 뜻 -->
 			<tr>
 				<td>${employeeEply.employeeNum}</td>
-				<td><a
-					href="read.do?no=${employeeEply.employeeNum}&pageNo=${employeeListPage.currentPage}">
-						<c:out value="${employeeEply.employeeEply_employType}" /><!-- 이름 클릭으로 바꿔야 할 듯 -->
-				</a></td>
 				<td>${employeeEply.employeeEply_depart}</td>
 				<td>${employeeEply.employeeEply_position}</td>
+				<td><a
+					href="read.do?no=${employeeEply.employeeNum}&pageNo=${employeeListPage.currentPage}"><!-- 나중에 수정해야함 ,employNum으로-->
+						<c:out value="${employeeEply.employeePsnl_kname}" /><!-- 이름 클릭으로 바꿔야 할 듯, InfoRequest로 이름 같이 받아서 -->
+				</a></td>
 			</tr>
 		</c:forEach>
 		<!-- 페이징 -->
-		<c:if test="${employeeListPage.hasEmployeeList()}">
+		<c:if test="${employeeListPagePart.hasEmployeeList()}">
 			<tr>
 				<td colspan="4"><c:if test="${employeeListPage.startPage > 5}">
-						<a href="list.do?pageNo=${employeeListPage.startPage - 5}">[이전]</a>
-					</c:if> <c:forEach var="pNo" begin="${employeeListPage.startPage}"
-						end="${employeeListPage.endPage}">
-						<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
-					</c:forEach> <c:if test="${employeeListPage.endPage < employeeListPage.totalPages}">
-						<a href="list.do?pageNo=${employeeListPage.startPage + 5}">[다음]</a>
+						<a href="employeeInfoManage.do?pageNo=${employeeListPagePart.startPage - 5}">[이전]</a>
+					</c:if> <c:forEach var="pNo" begin="${employeeListPagePart.startPage}"
+						end="${employeeListPagePart.endPage}">
+						<a href="employeeInfoManage.do?pageNo=${pNo}">[${pNo}]</a>
+					</c:forEach> <c:if test="${employeeListPagePart.endPage < employeeListPagePart.totalPages}">
+						<a href="employeeInfoManage.do?pageNo=${employeeListPagePart.startPage + 5}">[다음]</a>
 					</c:if></td>
 			</tr>
 		</c:if>
 	</table>
 
 	<!-- 등록창 -->
-	<form action="register.do" method="POST">
+	<form action="employeeInfoManage.do" method="POST">
 		<!-- 등록 버튼을 누른 적이 없으면 or 등록이 완료되면 -->
 		<c:if test="${!registerForm}">
 			<input type="hidden" name="registerForm" value="registerForm" />
