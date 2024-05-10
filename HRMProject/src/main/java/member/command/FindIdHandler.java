@@ -6,9 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import exception.MemberNotFoundException;
 import member.model.Member;
 import member.service.FindIdService;
-import member.service.MemberNotFoundException;
 import mvc.command.CommandHandler;
 
 public class FindIdHandler implements CommandHandler {

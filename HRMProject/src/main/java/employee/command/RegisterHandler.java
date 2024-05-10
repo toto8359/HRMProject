@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import employee.service.JoinRequest;
 import employee.service.RegisterService;
+import exception.DuplicateEmailException;
 import exception.DuplicateIdException;
-import member.service.DuplicateEmailException;
 import mvc.command.CommandHandler;
 
 public class RegisterHandler implements CommandHandler {
@@ -40,6 +40,13 @@ public class RegisterHandler implements CommandHandler {
 
 	// post로 받으면 진행하기
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+		
+		String registerForm = req.getParameter("registerForm");
+		if(registerForm == null || registerForm.isEmpty()) {
+			req.setAttribute("registerForm", Boolean.FALSE);//등록 버튼을 누른 적 없으면 안띄우기
+		}else {
+			req.setAttribute("registerForm", Boolean.TRUE);//등록 버튼을 눌렀으면 띄우기
+		}
 
 		// 입력받은 정보를 JoinRequest객체 joinReq에 넣기
 		JoinRequest joinReq = new JoinRequest();
@@ -65,6 +72,7 @@ public class RegisterHandler implements CommandHandler {
 		// 공란이 있으면, joinForm페이지로 돌아가기
 		joinReq.validate(errors);
 		if (!errors.isEmpty()) {
+			req.setAttribute("registerForm", Boolean.TRUE);//여전히 등록창 띄워두기
 			return FORM_VIEW;
 		}
 
@@ -74,8 +82,9 @@ public class RegisterHandler implements CommandHandler {
 		try {
 			registerService.Register(joinReq);
 			req.setAttribute("employeePsnl_kname", joinReq.getEmployeePsnl_kname());
-			return "/WEB-INF/view/registerSuccess.jsp";
+			return FORM_VIEW;
 		} catch (DuplicateIdException e) {
+			req.setAttribute("registerForm", Boolean.TRUE);//여전히 등록창 띄워두기
 			errors.put("duplicateResidentNumber", Boolean.TRUE);
 			return FORM_VIEW;
 		}

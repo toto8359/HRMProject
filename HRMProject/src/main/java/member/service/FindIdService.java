@@ -3,6 +3,7 @@ package member.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import exception.MemberNotFoundException;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 import member.dao.MemberDao;
