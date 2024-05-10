@@ -13,8 +13,8 @@
 ${authUser.member_name}님,안녕하세요.<br/>
 <a href="logout.do">[로그아웃 하기]</a>
 <a href="changePwd.do">[암호 변경하기]</a>
-<a href="register.do">[사원등록]</a> 
-<a href="article/list.do">[사원현황]</a>
+<a href="register.do">[사원정보관리]</a> 
+<a href="listEmployeeInfo.do">[사원현황]</a>
 <a href="article/list.do">[인사기록카드]</a>
 <a href="article/list.do">[제직증명서 발급]</a>
 <a href="article/list.do">[제직증명서 발급대장]</a>

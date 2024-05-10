@@ -15,6 +15,45 @@
 	<!-- 안내창 -->
 	<c:if test="${!empty employeePsnl_kname}">사원 ${employeePsnl_kname}의 등록을 완료했습니다.</c:if>
 
+	<!-- 사원정보목록창 -->
+	<table border="1">
+		<tr>
+			<td>사원번호</td>
+			<td>부서</td>
+			<td>직급</td>
+			<td>이름</td>
+		</tr>
+		<c:if test="${employeeListPage.hasNoEmployeeList()}">
+			<tr>
+				<td colspan="4">게시글이 없습니다.</td>
+			</tr>
+		</c:if>
+		<c:forEach var="employeeEply" items="${employeeListPage.content}"><!-- page의 List<employeeEply> content 뜻 -->
+			<tr>
+				<td>${employeeEply.employeeNum}</td>
+				<td><a
+					href="read.do?no=${employeeEply.employeeNum}&pageNo=${employeeListPage.currentPage}">
+						<c:out value="${employeeEply.employeeEply_employType}" /><!-- 이름 클릭으로 바꿔야 할 듯 -->
+				</a></td>
+				<td>${employeeEply.employeeEply_depart}</td>
+				<td>${employeeEply.employeeEply_position}</td>
+			</tr>
+		</c:forEach>
+		<!-- 페이징 -->
+		<c:if test="${employeeListPage.hasEmployeeList()}">
+			<tr>
+				<td colspan="4"><c:if test="${employeeListPage.startPage > 5}">
+						<a href="list.do?pageNo=${employeeListPage.startPage - 5}">[이전]</a>
+					</c:if> <c:forEach var="pNo" begin="${employeeListPage.startPage}"
+						end="${employeeListPage.endPage}">
+						<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
+					</c:forEach> <c:if test="${employeeListPage.endPage < employeeListPage.totalPages}">
+						<a href="list.do?pageNo=${employeeListPage.startPage + 5}">[다음]</a>
+					</c:if></td>
+			</tr>
+		</c:if>
+	</table>
+
 	<!-- 등록창 -->
 	<form action="register.do" method="POST">
 		<!-- 등록 버튼을 누른 적이 없으면 or 등록이 완료되면 -->

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import employee.service.JoinRequest;
 import employee.service.RegisterService;
-import exception.DuplicateEmailException;
 import exception.DuplicateIdException;
 import mvc.command.CommandHandler;
 
