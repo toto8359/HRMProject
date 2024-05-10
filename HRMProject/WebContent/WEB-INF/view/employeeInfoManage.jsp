@@ -13,7 +13,14 @@
 	<br />
 	<br />
 	<!-- 안내창 -->
-	<c:if test="${!empty employeePsnl_kname}">사원 ${employeePsnl_kname}의 등록을 완료했습니다.</c:if><br/>
+	<c:if test="${!empty employeePsnl_kname}">
+		<c:if test="${modifySuccess}">
+			사원 ${employeePsnl_kname}의 사원정보 수정을 완료했습니다.
+		</c:if>
+		<c:if test="${joinSuccess}">
+			사원 ${employeePsnl_kname}의 등록을 완료했습니다.
+		</c:if>
+	</c:if><br/>
 
 	사원목록<br/>
 	<!-- 사원정보목록창 -->
@@ -70,9 +77,17 @@
 	<form action="employeeInfoManage.do" method="POST">
 		<c:if test="${registerForm}">
 			<p>
+			<!-- 수정일 경우, 사원번호는 고정 -->
+			<c:if test="${modifyInfo}">
+				<input type="hidden" name="employeeNum" value="${employeeNumModify}" />
+				사원번호: ${employeeNumModify}
+			</c:if>
+			<!-- 등록일 경우, 사원번호 입력하도록 -->
+			<c:if test="${!modifyInfo}">
 				사원번호:<br /> <input type="text" name="employeeNum"
 					value="${param.employeeNum}">
 				<c:if test="${errors.employeeNum}">사원번호를 입력하세요.</c:if>
+			</c:if>
 			</p>
 			<p>
 				국문이름:<br /> <input type="text" name="employeePsnl_kname"
@@ -139,7 +154,16 @@
 				퇴사날짜:<br /> <input type="text" name="employeeEply_resignation"
 					value="${param.employeeEply_resignation}">
 			</p>
-			<input type="submit" value="등록">
+			<!-- 등록버튼으로 들어왔으면 등록 -->
+			<c:if test="${!modifyInfo}">
+				<input type="submit" value="등록">
+			</c:if>
+			<!-- 수정하기 버튼으로 들어왔으면 수정 -->
+			<c:if test="${modifyInfo}">
+				<input type="hidden" name="modifyInfo" value="modifyInfo" />
+				<input type="submit" value="수정">
+			</c:if>
+
 		</c:if>
 	</form>
 	
@@ -207,6 +231,17 @@
 	        <td>${infoRequestAll.employeeEply_resignation}</td>
 	    </tr>
 		</table>
+		
+		<!-- 수정하기 버튼을 누르면, 등록창을 띄우고, 등록창에 등록 말고 수정기능의 수정버튼을 띄운다 -->
+		<form action="employeeInfoManage.do" method="get">
+			<c:if test="${!modifyInfo}">
+				<input type="hidden" name="registerForm" value="registerForm" /><!-- 등록창띄우기 -->
+				<input type="hidden" name="modifyInfo" value="modifyInfo" /><!-- 수정버튼띄우기 -->
+				<input type="hidden" name="employeeNumModify" value="${infoRequestAll.employeeNum}" /><!-- 사원번호 보내기 -->
+				<input type="hidden" name="pageNo" value="${employeeListPagePart.currentPage}" /><!-- 현제 페이지 번호 보내기-->
+				<input type="submit" value="수정">
+			</c:if>
+		</form>
 	</c:if>
 	
 

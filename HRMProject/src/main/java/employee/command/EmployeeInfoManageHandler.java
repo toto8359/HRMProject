@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import employee.service.EmployeeListPagePart;
 import employee.service.InfoRequestAll;
 import employee.service.ListEmployeeInfoService;
+import employee.service.ModifyInfoService;
 import employee.service.ReadEmployeeInfoServiece;
 import employee.service.RegisterService;
 import exception.DuplicateIdException;
@@ -20,6 +21,7 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 	RegisterService registerService = new RegisterService();
 	ListEmployeeInfoService listEmployeeInfoService = new ListEmployeeInfoService();
 	ReadEmployeeInfoServiece readEmployeeInfoServiece = new ReadEmployeeInfoServiece();
+	ModifyInfoService modifyInfoService = new ModifyInfoService();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -40,6 +42,7 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// 1.사원정보 List 띄우기
 		// 2.등록버튼 띄워두기 (get)
 		// 3.List의 이름 누르면 해당사원 정보 보여주기
+		// 4.사원정보 아래 수정 버튼 누르면 수정창 띄우기
 
 		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 		String pageNoVal = req.getParameter("pageNo");
@@ -68,6 +71,15 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 			req.setAttribute("readInfo", Boolean.TRUE);
 		}
 		// 3.이름 누르면 정보 보여주기------------------------------------------------------------------------------------------
+		
+		// 4.수정버튼 보여주기--------------------------------------------------------------------------------------------------
+		String modifyInfo = req.getParameter("modifyInfo");
+		String employeeNumMopdify = req.getParameter("employeeNumModify");
+		if( !(modifyInfo == null || modifyInfo.isEmpty()) ) {
+			req.setAttribute("employeeNumModify", employeeNumMopdify);//사원번호 보여주기
+			req.setAttribute("modifyInfo", Boolean.TRUE);
+		}
+		// 4.수정버튼 보여주기--------------------------------------------------------------------------------------------------
 
 		
 		return FORM_VIEW;
@@ -79,6 +91,7 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// 1.사원정보 List 띄우기
 		// 2.등록 버튼 눌렀을 때,입력창 보여주기
 		// 3.사원정보를 등록했을 때, 해당 사원 정보 보여주기
+		// 4.수정 후 저장하기 눌렀을 때, 저장 및 해당사원 정보 보여주기
 
 		// 1.사원정보List띄우기-------------------------------------------------------------------------------------------------
 		String pageNoVal = req.getParameter("pageNo");
@@ -114,6 +127,7 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		joinReq.setEmployeeEply_position(req.getParameter("employeeEply_position"));
 		joinReq.setEmployeeEply_join(req.getParameter("employeeEply_join"));
 		joinReq.setEmployeeEply_resignation(req.getParameter("employeeEply_resignation"));
+		String modifyInfo = req.getParameter("modifyInfo");//수정상태인지 확인
 
 		// 공란 확인을 위해 errors 선언 및 session에 저장
 		Map<String, Boolean> errors = new HashMap<>();
@@ -122,7 +136,12 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// 공란이 있으면, joinForm페이지로 돌아가기
 		joinReq.validate(errors);
 		if (!errors.isEmpty()) {
-			req.setAttribute("registerForm", Boolean.TRUE);// 여전히 등록창 띄워두기
+			// 여전히 등록창 띄워두기
+			req.setAttribute("registerForm", Boolean.TRUE);
+			//수정상태였으면, 버튼 수정으로 남기기
+			if( !(modifyInfo == null || modifyInfo.isEmpty()) ) {
+				req.setAttribute("modifyInfo", Boolean.TRUE);
+			}
 			return FORM_VIEW;
 		}
 
@@ -130,10 +149,21 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// 회원가입 성공을 알리는 페이지 joinSuccess.jsp로 이동
 		// 중복 에러 발생시, errors.duplicateId속성에 TRUE 넣기
 		try {
-			registerService.Register(joinReq);
+			//수정상태였으면, 수정하기
+			if( !(modifyInfo == null || modifyInfo.isEmpty()) ) {
+				modifyInfoService.modifyInfo(joinReq);
+				req.setAttribute("modifySuccess", Boolean.TRUE);
+			}else {
+				registerService.Register(joinReq);
+				req.setAttribute("joinSuccess", Boolean.TRUE);
+			}
 			req.setAttribute("employeePsnl_kname", joinReq.getEmployeePsnl_kname());
 		} catch (DuplicateIdException e) {
 			req.setAttribute("registerForm", Boolean.TRUE);// 여전히 등록창 띄워두기
+			//수정상태였으면, 버튼 수정으로 남기기
+			if( !(modifyInfo == null || modifyInfo.isEmpty()) ) {
+				req.setAttribute("modifyInfo", Boolean.TRUE);
+			}
 			errors.put("duplicateResidentNumber", Boolean.TRUE);
 			return FORM_VIEW;
 		}
