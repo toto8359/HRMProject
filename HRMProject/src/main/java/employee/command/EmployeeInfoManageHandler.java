@@ -224,7 +224,7 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// 마지막 돌아갈 페이지
 		// get으로 돌아가기 때문에 등록창은 꺼짐
 		// 最後に戻るページ
-		// getで戻るため、登録画面は非表示
+		// getで戻るため、登録画面はオフ
 		return FORM_VIEW;
 	}
 
