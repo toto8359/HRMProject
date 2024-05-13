@@ -31,7 +31,7 @@ public class DBCPInit extends HttpServlet {
   }
 
 
-  // DB 커넥션 풀 초기화 설정
+  // DB 커넥션 풀 초기화
   private void initConnectionPool() {
     try {
       // DB 연결 정보
@@ -39,24 +39,26 @@ public class DBCPInit extends HttpServlet {
       String dbId = "system";
       String dbPw = "1234";
 
-      // 유효성 검사
+      // ConnectionFactory 및 PoolableConnectionFactory를 생성하고 설정
       ConnectionFactory cf = new DriverManagerConnectionFactory(jdbcDriver, dbId, dbPw);
 
       PoolableConnectionFactory pcf = new PoolableConnectionFactory(cf, null);
       pcf.setValidationQuery("select 1");
 
+      // 커넥션 풀의 설정을 구성
       GenericObjectPoolConfig pc = new GenericObjectPoolConfig();
       pc.setTimeBetweenEvictionRunsMillis(1000L * 60L * 5L);
       pc.setTestWhileIdle(true);
       pc.setMinIdle(4);
       pc.setMaxTotal(50);
 
+      // 연결 풀을 생성하고 설정
       GenericObjectPool<PoolableConnection> cp = new GenericObjectPool<>(pcf, pc);
       pcf.setPool(cp);
 
+      // PoolingDriver를 로드, 커넥션 풀을 등록
       Class.forName("org.apache.commons.dbcp2.PoolingDriver"); // 코드 확인
       // 코드 확인
-      // 연결 풀 등록
       PoolingDriver pd = (PoolingDriver) DriverManager.getDriver("jdbc:apache:commons:dbcp:");
       pd.registerPool("HRMProject", cp);
     } catch (Exception e) {
