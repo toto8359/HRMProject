@@ -54,6 +54,9 @@
 		<c:if test="${joinSuccess}">
 			사원 ${employeePsnl_kname}의 등록을 완료했습니다.
 		</c:if>
+		<c:if test="${deleteSuccess}">
+			사원 ${employeePsnl_kname}의 사원정보 삭제를 완료했습니다.
+		</c:if>
 	</c:if><br/>
 
 	사원목록<br/>
@@ -342,7 +345,7 @@
 	    </tr>
 		</table>
 		
-		<!-- 수정하기 버튼을 누르면, 등록창을 띄우고, 등록창에 등록 말고 수정기능의 수정버튼을 띄운다 -->
+		<!-- 수정하기 버튼을 누르면, 등록창(수정창)을 띄우고, 등록창에 등록 말고 수정기능의 수정버튼을 띄운다 -->
 		<form action="employeeInfoManage.do" method="get">
 			<c:if test="${!modifyInfo}">
 				<input type="hidden" name="registerForm" value="registerForm" /><!-- 등록창띄우기 -->
@@ -351,6 +354,13 @@
 				<input type="hidden" name="pageNo" value="${employeeListPagePart.currentPage}" /><!-- 현제 페이지 번호 보내기-->
 				<input type="submit" value="수정">
 			</c:if>
+		</form>
+		<!-- 삭제하기 버튼을 누르면, 삭제한다 -->
+		<form action="employeeInfoManage.do" method="POST">
+				<input type="hidden" name="employeeNumDelete" value="${infoRequestAll.employeeNum}" /><!-- 사원번호 보내기 -->
+				<input type="hidden" name="employeeKnameDelete" value="${infoRequestAll.employeePsnl_kname}" /><!-- 사원이름 -->
+				<input type="hidden" name="pageNo" value="${employeeListPagePart.currentPage}" /><!-- 현제 페이지 번호 보내기-->
+				<input type="submit" value="삭제">
 		</form>
 	</c:if>
 	
