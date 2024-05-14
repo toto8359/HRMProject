@@ -14,9 +14,11 @@ import jdbc.JdbcUtil;
 
 public class EmployeeEplyDao {
 
-	// CRUD구현, 그 외 필요한 기능은 추가예정
+	// CRUD구현
+	// CRUDの実装
 
 	// 사원번호에 해당하는 직원 개인 정보 불러오기
+	// 社員番号に該当する従業員個人情報を読み込み
 	public EmployeeEply selectByEmployeeNum(Connection conn, String employeeNum) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -39,6 +41,7 @@ public class EmployeeEplyDao {
 	}
 
 	// 직원 개인 정보 추가
+	// 従業員個人情報の追加
 	public void insert(Connection conn, EmployeeEply employee) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
@@ -56,6 +59,7 @@ public class EmployeeEplyDao {
 	}
 
 	// 직원 개인 정보 수정
+	// 従業員個人情報の修正
 	public void update(Connection conn, EmployeeEply employee) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
@@ -75,6 +79,7 @@ public class EmployeeEplyDao {
 	}
 
 	// 직원 개인 정보 삭제
+	// 従業員個人情報の削除
 	public void delete(Connection conn, String employeeNum) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
@@ -87,6 +92,7 @@ public class EmployeeEplyDao {
 	}
 	
 	//사원정보 list를 위한 CRUD - Read
+	// 社員情報リストのためのCRUD - Read
 	public int selectCount(Connection conn) throws SQLException {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -104,6 +110,7 @@ public class EmployeeEplyDao {
 	}
 
 	//사원정보 list를 위한 CRUD - Read
+	// 社員情報リストのためのCRUD - Read
 	public List<InfoRequestPart> select(Connection conn, int startRow, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

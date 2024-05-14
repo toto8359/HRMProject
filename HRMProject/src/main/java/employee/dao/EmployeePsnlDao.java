@@ -10,9 +10,11 @@ import jdbc.JdbcUtil;
 
 public class EmployeePsnlDao {
 
-	// CRUD구현, 그 외 필요한 기능은 추가예정
+	// CRUD구현
+	// CRUDの実装
 
 	// 사원번호에 해당하는 직원 정보 불러오기
+	// 社員番号に該当する従業員個人情報を読み込み
 	public EmployeePsnl selectByEmployeeNum(Connection conn, String employeeNum) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -37,6 +39,7 @@ public class EmployeePsnlDao {
 	}
 
 	// 주민번호에 해당하는 직원 개인 정보 불러오기
+	// 住民番号に該当する職員の個人情報を読み込む
 	public EmployeePsnl selectByResidentNumber(Connection conn, String residentNumber) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -62,6 +65,7 @@ public class EmployeePsnlDao {
 	}
 
 	// 직원 정보 추가
+	// 従業員情報の追加
 	public void insert(Connection conn, EmployeePsnl employee) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
@@ -82,6 +86,7 @@ public class EmployeePsnlDao {
 	}
 
 	// 직원 정보 수정
+	// 従業員情報の修正
 	public void update(Connection conn, EmployeePsnl employee) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
@@ -105,6 +110,7 @@ public class EmployeePsnlDao {
 	}
 
 	// 직원 정보 삭제
+	// 従業員情報の削除
 	public void delete(Connection conn, String employeeNum) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {

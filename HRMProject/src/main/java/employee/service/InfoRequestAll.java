@@ -4,22 +4,23 @@ import java.util.Map;
 
 public class InfoRequestAll {
 
-	private String employeeNum; // 사원번호
-	private String employeePsnl_kname; // 국문이름
-	private String employeePsnl_ename; // 영문이름
-	private String employeePsnl_isForeigner; // 내국인 외국인
-	private String employeePsnl_residentNumber; // 주민번호
-	private String employeePsnl_adress; // 주소
-	private String employeePsnl_phoneNumber; // 전화번호
-	private String employeePsnl_email; // 이메일
-	private String employeePsnl_sns; // sns계정
-	private String employeeEply_employType; // 고용 형태(정규직, 비정규직)
-	private String employeeEply_depart; // 부서
-	private String employeeEply_position; // 직급
-	private String employeeEply_join; // 입사날짜
-	private String employeeEply_resignation; // 퇴사날짜
+	private String employeeNum; // 사원번호			// 社員番号	
+	private String employeePsnl_kname; // 국문이름		// 国名
+	private String employeePsnl_ename; // 영문이름		// 英語名
+	private String employeePsnl_isForeigner; // 내국인 외국인 //在留資格（国内、外国）
+	private String employeePsnl_residentNumber; // 주민번호  // 住民番号
+	private String employeePsnl_adress; // 주소		// 住所
+	private String employeePsnl_phoneNumber; // 전화번호	// 電話番号
+	private String employeePsnl_email; // 이메일		// メール
+	private String employeePsnl_sns; // sns계정		// SNSアカウント
+	private String employeeEply_employType; // 고용 형태(정규직, 비정규직)	// 雇用形態（正社員、非正社員）
+	private String employeeEply_depart; // 부서		// 部署
+	private String employeeEply_position; // 직급		// 役職
+	private String employeeEply_join; // 입사날짜		// 入社日
+	private String employeeEply_resignation; // 퇴사날짜	// 退社日
 
 	// 사원등록창의 공란 확인, map형태 errors.notMatch로 저장
+	// 社員登録画面の空白チェック、Map形式のerrors.notMatchに保存
 	public void validate(Map<String, Boolean> errors) {
 		checkEmpty(errors, employeeNum, "employeeNum");
 		checkEmpty(errors, employeePsnl_kname, "employeePsnl_kname");
@@ -32,10 +33,11 @@ public class InfoRequestAll {
 		checkEmpty(errors, employeeEply_depart, "employeeEply_depart");
 		checkEmpty(errors, employeeEply_position, "employeeEply_position");
 		checkEmpty(errors, employeeEply_join, "employeeEply_join");
-//		checkEmpty(errors, employeeEply_resignation, "employeeEply_resignation"); //필수정보 아니면 주석처리하여 비우기
+//		checkEmpty(errors, employeeEply_resignation, "employeeEply_resignation"); //필수정보 아니면 주석처리하여 비우기  // 必須情報でない場合はコメントアウトして空にする
 	}
 
 	// Map형 errors에, value값이 null이거나 비어있으면, 에러 저장
+	// Map形式のerrorsに、valueがnullまたは空の場合、エラーを保存
 	private void checkEmpty(Map<String, Boolean> errors, String value, String fieldName) {
 		if (value == null || value.isEmpty()) {
 			errors.put(fieldName, Boolean.TRUE);
@@ -43,6 +45,7 @@ public class InfoRequestAll {
 	}
 
 	// 생성자
+	// コンストラクタ
 	public InfoRequestAll() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -71,6 +74,7 @@ public class InfoRequestAll {
 	}
 
 	// 게터 세터
+	// ゲッター・セッター
 	public String getEmployeeNum() {
 		return employeeNum;
 	}
