@@ -578,7 +578,7 @@
 			$("input[type='text']").not("[name='employeeEply_resignation']")
 					.each(function() {
 						if ($(this).val() === "") {
-							isEmpty = true;
+							isEmpty = true; 
 						}
 					});
 			return isEmpty;

@@ -40,7 +40,7 @@ public class EmployeeListPagePart {
 			if (total % size > 0) {
 				totalPages++;
 			}
-
+ 
 			// 페이지 목록 표시를 위함
 			// ページリスト表示のため
 			int modVal = currentPage % 5;
