@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원제 게시판 예제</title>
+<title>メインページ</title>
+<!-- 메인페이지 -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
@@ -19,41 +20,53 @@
 
 <div class="menu-left">
     <c:if test="${not empty authUser}">
-        <p style="color: black;">${authUser.member_name}님, 안녕하세요.</p>
+        <p style="color: black;">${authUser.member_name}様、ようこそ。</p>
+        <!-- 님, 환영합니다 -->
         <div class="left-menu-btn">
-        	<a  href="login.do">로그아웃 하기</a>
+        	<a  href="login.do">ログアウトする</a>
+        	<!-- 로그아웃 하기 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="changePwd.do">암호 변경하기</a>
+        <a class="menu-item" href="changePwd.do">パスワードを変更する</a>
+        <!-- 암호 변경하기 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="employeeInfoManage.do">사원정보관리</a>
+        <a class="menu-item" href="employeeInfoManage.do">社員情報管理</a>
+        <!-- 사원정보관리 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="listEmployeeInfo.do">사원현황</a>
+        <a class="menu-item" href="listEmployeeInfo.do">社員の現況</a>
+        <!-- 사원현황 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">인사기록카드</a>
+        <a class="menu-item" href="article/list.do">人事記録カード</a>
+        <!-- 인사기록카드 한자깨짐-->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">제직증명서 발급</a>
+        <a class="menu-item" href="article/list.do">在職証明書の発行</a>
+        <!-- 재직증명서 발급 한자안보임-->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">제직증명서 발급대장</a>
+        <a class="menu-item" href="article/list.do">在職証明書発行台帳</a>
+        <!-- 재직증명서 발급대장 한자 안보이고 깨짐-->
         </div>
     </c:if>
     <c:if test="${empty authUser}">
     	<div class="left-menu-btn">
-   		<a class="menu-item" href="login.do">로그인 하기</a>
+   		<a class="menu-item" href="login.do">ログインする</a>
+   		<!-- 로그인 하기 -->
    		</div>
    		<div class="left-menu-btn">
-        <a class="menu-item" href="join.do">회원가입 하기</a>
+        <a class="menu-item" href="join.do">会員登録する</a>
+        <!-- 회원가입 하기 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="findId.do">ID 찾기</a>
+        <a class="menu-item" href="findId.do">ID検索</a>
+        <!-- ID 찾기 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="findPw.do">PW 찾기</a>
+        <a class="menu-item" href="findPw.do">PW検索</a>
+        <!-- PW 찾기 -->
         </div>
     </c:if>
 </div>
