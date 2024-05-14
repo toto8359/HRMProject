@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,7 +175,7 @@
 			<div class="page-answer">
 				<h3>${infoRequestAll.employeePsnl_kname}님의사원정보</h3>
 			</div>
-			<table class="custom-table">
+			<table class="custom-table" id="print-table">
 				<thead>
 					<tr>
 						<th>항목</th>
@@ -246,10 +247,122 @@
 							value="${infoRequestAll.employeeNum}" />
 						<input type="hidden" name="pageNo"
 							value="${employeeListPagePart.currentPage}" />
-						<input type="submit" value="인쇄" class="custom-button">
+						<input type="submit" value="인쇄" class="custom-button" onclick="printTable()">
 				</form>
 			</div>
 		</div>
 	</c:if>
+	
+<script>
+function printTable() {
+    // 테이블 요소와 스타일 요소를 가져옵니다.
+    var table = document.getElementById("print-table"); // id값이 print-table인 테이블을 가져옵니다.
+    var styles = document.createElement('style'); // 스타일 요소를 생성합니다.
+
+    // 테이블을 적용할 스타일을 추가합니다.
+    styles.innerHTML = `
+        .tg  {border-collapse:collapse;border-spacing:0;}
+        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+        .tg .tg-7ofv{border-color:inherit;font-size:24px;text-align:center;vertical-align:middle}
+        .tg .tg-nrix{text-align:center;vertical-align:middle}
+    `;
+
+    // 새 창을 열고 스타일과 테이블을 새 창에 쓰기합니다.
+    var newWin = window.open('about:blank', '_blank'); // about:blank 주소로 새 탭을 엽니다.
+    newWin.document.write('<html><head><title>Print Preview</title></head><body>'); // 새 탭에 문서 시작을 작성합니다.
+    newWin.document.write('<style>' + styles.innerHTML + '</style>'); // 스타일을 작성합니다.
+    newWin.document.write('<table class="tg" style="undefined;table-layout: fixed; width: 564px">'); // 테이블을 시작합니다.
+    newWin.document.write('<colgroup>'); // 열 그룹을 시작합니다.
+
+    // 열 너비를 정의합니다.
+    newWin.document.write('<col style="width: 67px">');
+    newWin.document.write('<col style="width: 70px">');
+    newWin.document.write('<col style="width: 79px">');
+    newWin.document.write('<col style="width: 109px">');
+    newWin.document.write('<col style="width: 95px">');
+    newWin.document.write('<col style="width: 144px">');
+
+    newWin.document.write('</colgroup>'); // 열 그룹을 닫습니다.
+    newWin.document.write('<thead>'); // 머리말을 시작합니다.
+    newWin.document.write('<tr>'); // 행을 시작합니다.
+    newWin.document.write('<th class="tg-7ofv" colspan="6"><span style="font-weight:bold">재 직 증 명 서</span></th>'); // 셀을 작성합니다.
+    newWin.document.write('</tr>'); // 행을 닫습니다.
+    newWin.document.write('</thead>'); // 머리말을 닫습니다.
+    newWin.document.write('<tbody>'); // 몸통을 시작합니다.
+    
+    // 테이블 내용을 작성합니다.
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-9wq8" rowspan="3">인적사항</td>');
+    newWin.document.write('<td class="tg-nrix" rowspan="2">성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>');
+    newWin.document.write('<td class="tg-nrix">국문</td>');
+    newWin.document.write('<td class="tg-nrix">${infoRequestAll.employeePsnl_kname}</td>');
+    newWin.document.write('<td class="tg-nrix" rowspan="2">주민등록번호<br><br>(생년월일)</td>');
+    newWin.document.write('<td class="tg-nrix" rowspan="2">${infoRequestAll.employeePsnl_residentNumber}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix">영문</td>');
+    newWin.document.write('<td class="tg-nrix">${infoRequestAll.employeePsnl_ename}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix">주   &nbsp;&nbsp;&nbsp; 소</td>');
+    newWin.document.write('<td class="tg-nrix" colspan="4">${infoRequestAll.employeePsnl_adress}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix" rowspan="3">재직사항</td>');
+    newWin.document.write('<td class="tg-nrix">회&nbsp;&nbsp;사&nbsp;&nbsp;명</td>');
+    newWin.document.write('<td class="tg-nrix" colspan="2">(주) 헥사곤</td>');
+    newWin.document.write('<td class="tg-nrix">사  원  번  호</td>');
+    newWin.document.write('<td class="tg-nrix">${infoRequestAll.employeeNum}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix">부  &nbsp;&nbsp;  서</td>');
+    newWin.document.write('<td class="tg-nrix" colspan="2">${infoRequestAll.employeeEply_depart}</td>');
+    newWin.document.write('<td class="tg-nrix">직    위</td>');
+    newWin.document.write('<td class="tg-nrix">${infoRequestAll.employeeEply_position}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix">입&nbsp;&nbsp;사&nbsp;&nbsp;일</td>');
+    newWin.document.write('<td class="tg-nrix" colspan="2">${infoRequestAll.employeeEply_join}</td>');
+    newWin.document.write('<td class="tg-nrix">퇴   사   일</td>');
+    newWin.document.write('<td class="tg-nrix">${infoRequestAll.employeeEply_resignation}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix" colspan="6" rowspan="2">상기인은 위와 같이 당사에 재직하고 있음을 증명합니다.<br><br><br><br><br><br><br>${dateToday}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix">발급부서</td>');
+    newWin.document.write('<td class="tg-nrix" colspan="3">${infoRequestAll.employeeEply_depart}</td>');
+    newWin.document.write('<td class="tg-nrix">연락처</td>');
+    newWin.document.write('<td class="tg-nrix">${infoRequestAll.employeePsnl_phoneNumber}</td>');
+    newWin.document.write('</tr>');
+    newWin.document.write('<tr>');
+    newWin.document.write('<td class="tg-nrix" colspan="6">(주) 헥사곤  <span style="font-weight:bold">대표 이사  O O O&nbsp;&nbsp;(인)</span></td>');
+    newWin.document.write('</tr>');
+
+
+    newWin.document.write('</tbody>'); // 몸통을 닫습니다.
+    newWin.document.write('</table>'); // 테이블을 닫습니다.
+    newWin.document.write('</body></html>'); // 문서를 닫습니다.
+    newWin.document.close(); // 문서 작성이 완료되었으므로 문서를 닫습니다.
+
+    // 프린트를 실행합니다.
+    newWin.print(); // 프린트 다이얼로그를 엽니다.
+
+    // 프린트 창이 닫힌 후 새로 열린 탭을 닫도록 지연시간을 설정합니다.
+    //작동안됨... 이유 찾는중...
+    setTimeout(function() {
+        newWin.close(); // 새로 열린 탭을 닫습니다.
+    }, 2000); // 2초 후에 탭을 닫습니다.
+}
+
+</script>
+
+
 </body>
 </html>
