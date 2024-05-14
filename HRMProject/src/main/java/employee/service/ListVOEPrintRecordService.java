@@ -13,6 +13,7 @@ public class ListVOEPrintRecordService {
 	private int size = 10;
 	
 	//재직증명서 발급대장 출력
+	//在職証明書発行台帳出力
 	public VOEPrintRecordPage getVOEPrintRecord(int pageNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 
