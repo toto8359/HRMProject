@@ -224,6 +224,9 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 				req.setAttribute("joinSuccess", Boolean.TRUE);
 			}
 			req.setAttribute("employeePsnl_kname", joinReq.getEmployeePsnl_kname());
+			employeeListPagePart = listEmployeeInfoService.getEmployeeListPagePart(pageNo);
+			req.setAttribute("employeeListPagePart", employeeListPagePart);
+			
 		} catch (DuplicateIdException e) {
 			req.setAttribute("registerForm", Boolean.TRUE);// 여전히 등록창 띄워두기 // まだ登録画面を表示
 			//수정상태였으면, 버튼 수정으로 남기기

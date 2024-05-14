@@ -50,7 +50,7 @@ public class VOEPrintRecordPage {
 	}
 
 	// view에서 재직증명서 출력기록 존재 확인
-	public boolean hasnoVOERecordList() {
+	public boolean hasNoVOERecordList() {
 		return total == 0;
 	}
 

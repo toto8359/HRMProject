@@ -125,7 +125,7 @@ public class EmployeeEplyDao {
 					+ "            from employeePsnl \r\n"
 					+ "            inner join employeeEply\r\n"
 					+ "            on employeePsnl.employeeNum = employeeEply.employeeNum) \r\n"
-					+ "        ORDER BY employeeNum DESC) \r\n"
+					+ "        ORDER BY TO_NUMBER(employeeNum) DESC) \r\n"
 					+ "    a WHERE ROWNUM <= ?) \r\n"
 					+ "WHERE rnum >= ?");
 			pstmt.setInt(1, startRow + size);

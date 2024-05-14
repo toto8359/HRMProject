@@ -96,7 +96,7 @@
 			<a class="menu-item" href="changePwd.do">암호 변경하기</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="employeeInfoManage.do">사원정보관리</a>
+			<a class="menu-item" href="listVOEPrintRecord.do">사원정보관리</a>
 		</div>
 		<div class="left-menu-btn">
 			<a class="menu-item" href="listEmployeeInfo.do">사원현황</a>
@@ -108,7 +108,7 @@
 			<a class="menu-item" href="printVOE.do">제직증명서 발급</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="article/list.do">제직증명서 발급대장</a>
+			<a class="menu-item" href="listVOEPrintRecord.do">제직증명서 발급대장</a>
 		</div>
 	</div>
 
@@ -125,10 +125,10 @@
 		</c:if>
 	</c:if><br/> --%>
 
-	<!-- 재직증명서 출력목록(출력대장) -->
+	<!-- 재직증명서 출력대장 -->
 	<div class="table-container">
 		<div class="page-answer">
-			<h3>사원 목록</h3>
+			<h3>재직증명서 출력대장</h3>
 		</div>
 		<table class="custom-table">
 			<!-- custom-table 클래스 추가 -->
@@ -137,23 +137,25 @@
 					<th>재직증명서 번호</th>
 					<th>발급일시</th>
 					<th>사원번호</th>
+					<th>국문성명</th>
 					<th>고용형태</th>
 					<th>부서</th>
 					<th>직급</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${voePrintRecordPage.hasnoVOERecordList()}">
+				<c:if test="${voePrintRecordPage.hasNoVOERecordList()}">
 					<tr>
-						<td colspan="4">게시글이 없습니다.</td>
+						<td colspan="6">게시글이 없습니다.</td>
 					</tr>
 				</c:if>
-				<c:forEach var="employeeEply"
+				<c:forEach var="voePrintRecordPage"
 					items="${voePrintRecordPage.content}">
 					<tr>
 						<td>${voePrintRecordPage.recordNumber}</td>
 						<td>${voePrintRecordPage.printDate}</td>
 						<td>${voePrintRecordPage.employeeNum}</td>
+						<td>${voePrintRecordPage.employeePsnl_kname}</td>
 						<td>${voePrintRecordPage.employeeEply_employType}</td>
 						<td>${voePrintRecordPage.employeeEply_depart}</td>
 						<td>${voePrintRecordPage.employeeEply_position}</td>
@@ -161,19 +163,19 @@
 				</c:forEach>
 				<c:if test="${voePrintRecordPage.hasVOERecordList()}">
 					<tr>
-						<td colspan="4"><c:if
+						<td colspan="6"><c:if
 								test="${voePrintRecordPage.startPage > 5}">
 								<a
-									href="employeeInfoManage.do?pageNo=${voePrintRecordPagePart.startPage - 5}">[이전]</a>
+									href="listVOEPrintRecord.do?pageNo=${voePrintRecordPage.startPage - 5}">[이전]</a>
 								<!-- custom-button 클래스 추가 -->
-							</c:if> <c:forEach var="pNo" begin="${voePrintRecordPagePart.startPage}"
-								end="${voePrintRecordPagePart.endPage}">
-								<a href="employeeInfoManage.do?pageNo=${pNo}">[${pNo}]</a>
+							</c:if> <c:forEach var="pNo" begin="${voePrintRecordPage.startPage}"
+								end="${voePrintRecordPage.endPage}">
+								<a href="listVOEPrintRecord.do?pageNo=${pNo}">[${pNo}]</a>
 								<!-- custom-button 클래스 추가 -->
 							</c:forEach> <c:if
-								test="${voePrintRecordPagePart.endPage < voePrintRecordPagePart.totalPages}">
+								test="${voePrintRecordPage.endPage < voePrintRecordPage.totalPages}">
 								<a
-									href="employeeInfoManage.do?pageNo=${voePrintRecordPagePart.startPage + 5}">[다음]</a>
+									href="listVOEPrintRecord.do?pageNo=${voePrintRecordPage.startPage + 5}">[다음]</a>
 								<!-- custom-button 클래스 추가 -->
 							</c:if></td>
 					</tr>

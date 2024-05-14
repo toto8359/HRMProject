@@ -10,7 +10,7 @@ import jdbc.connection.ConnectionProvider;
 public class ListVOEPrintRecordService {
 	
 	VOEPrintRecordDao voePrintRecordDao = new VOEPrintRecordDao();
-	private int size = 10; 
+	private int size = 10;
 	
 	public VOEPrintRecordPage getVOEPrintRecord(int pageNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {

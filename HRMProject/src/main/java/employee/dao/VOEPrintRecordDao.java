@@ -40,13 +40,16 @@ public class VOEPrintRecordDao {
 					+ "            recordNumber,\r\n"
 					+ "            printDate,\r\n"
 					+ "            VOEPrintRecord.employeeNum AS employeeNum,\r\n"
+					+ "            employeePsnl_kname,\r\n"
 					+ "            employeeEply_employType,\r\n"
 					+ "            employeeEply_depart,\r\n"
 					+ "            employeeEply_position\r\n"
 					+ "            FROM VOEPrintRecord\r\n"
 					+ "            INNER JOIN employeeEply\r\n"
-					+ "            ON VOEPrintRecord.employeeNum = employeeEply.employeeNum) \r\n"
-					+ "        ORDER BY recordNumber DESC) \r\n"
+					+ "            ON VOEPrintRecord.employeeNum = employeeEply.employeeNum\r\n"
+					+ "            inner join employeePsnl\r\n"
+					+ "            on employeeEply.employeeNum = employeePsnl.employeeNum)\r\n"
+					+ "        ORDER BY TO_NUMBER(recordNumber) DESC) \r\n"
 					+ "    a WHERE ROWNUM <= ?) \r\n"
 					+ "WHERE rnum >= ?");
 			pstmt.setInt(1, startRow + size);
@@ -64,27 +67,28 @@ public class VOEPrintRecordDao {
 	}
 
 	public int selectCount(Connection conn) throws SQLException {
-		Statement stmt = null;
-		ResultSet rs = null;
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from VOEPrintRecord");
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-			return 0;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(stmt);
-		}
+	    Statement stmt = null;
+	    ResultSet rs = null;
+	    try {
+	        stmt = conn.createStatement();
+	        rs = stmt.executeQuery("select count(*) as count from voePrintRecord");
+	        if (rs.next()) {
+	            return rs.getInt("count");
+	        }
+	        return 0;
+	    } finally {
+	        JdbcUtil.close(rs);
+	        JdbcUtil.close(stmt);
+	    }
 	}
     
 	private InfoRequestVOERecord convertInfoRequestVOERecord(ResultSet rs) throws SQLException {
 		return new InfoRequestVOERecord(
-				rs.getString("employeeNum"),
-				toDate(rs.getTimestamp("regdate")),
+				rs.getString("recordNumber"),
+				toDate(rs.getTimestamp("printdate")),
 				rs.getString("employeeNum"),
 				rs.getString("employeePsnl_kname"),
+				rs.getString("employeeEply_employType"),
 				rs.getString("employeeEply_depart"),
 				rs.getString("employeeEply_position"));
 	}

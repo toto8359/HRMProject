@@ -7,6 +7,7 @@ public class InfoRequestVOERecord {
 	private String recordNumber;
 	private Date printDate;
 	private String employeeNum;
+	private String employeePsnl_kname;
 	private String employeeEply_employType;
 	private String employeeEply_depart;
 	private String employeeEply_position;
@@ -15,12 +16,13 @@ public class InfoRequestVOERecord {
 		super();
 	}
 
-	public InfoRequestVOERecord(String recordNumber, Date printDate, String employeeNum, String employeeEply_employType,
-			String employeeEply_depart, String employeeEply_position) {
+	public InfoRequestVOERecord(String recordNumber, Date printDate, String employeeNum, String employeePsnl_kname,
+			String employeeEply_employType, String employeeEply_depart, String employeeEply_position) {
 		super();
 		this.recordNumber = recordNumber;
 		this.printDate = printDate;
 		this.employeeNum = employeeNum;
+		this.employeePsnl_kname = employeePsnl_kname;
 		this.employeeEply_employType = employeeEply_employType;
 		this.employeeEply_depart = employeeEply_depart;
 		this.employeeEply_position = employeeEply_position;
@@ -48,6 +50,14 @@ public class InfoRequestVOERecord {
 
 	public void setEmployeeNum(String employeeNum) {
 		this.employeeNum = employeeNum;
+	}
+
+	public String getEmployeePsnl_kname() {
+		return employeePsnl_kname;
+	}
+
+	public void setEmployeePsnl_kname(String employeePsnl_kname) {
+		this.employeePsnl_kname = employeePsnl_kname;
 	}
 
 	public String getEmployeeEply_employType() {
