@@ -112,7 +112,20 @@
 		</div>
 	</div>
 
-	<!-- 사원정보목록창 -->
+	<%-- 	<!-- 안내창 -->
+	<c:if test="${!empty employeePsnl_kname}">
+		<c:if test="${modifySuccess}">
+			사원 ${employeePsnl_kname}의 사원정보 수정을 완료했습니다.
+		</c:if>
+		<c:if test="${joinSuccess}">
+			사원 ${employeePsnl_kname}의 등록을 완료했습니다.
+		</c:if>
+		<c:if test="${deleteSuccess}">
+			사원 ${employeePsnl_kname}의 사원정보 삭제를 완료했습니다.
+		</c:if>
+	</c:if><br/> --%>
+
+	<!-- 재직증명서 출력목록(출력대장) -->
 	<div class="table-container">
 		<div class="page-answer">
 			<h3>사원 목록</h3>
@@ -121,45 +134,46 @@
 			<!-- custom-table 클래스 추가 -->
 			<thead>
 				<tr>
+					<th>재직증명서 번호</th>
+					<th>발급일시</th>
 					<th>사원번호</th>
+					<th>고용형태</th>
 					<th>부서</th>
 					<th>직급</th>
-					<th>이름</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${employeeListPagePart.hasNoEmployeeList()}">
+				<c:if test="${voePrintRecordPage.hasnoVOERecordList()}">
 					<tr>
 						<td colspan="4">게시글이 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:forEach var="employeeEply"
-					items="${employeeListPagePart.content}">
+					items="${voePrintRecordPage.content}">
 					<tr>
-						<td>${employeeEply.employeeNum}</td>
-						<td>${employeeEply.employeeEply_depart}</td>
-						<td>${employeeEply.employeeEply_position}</td>
-						<td><a
-							href="printVOE.do?employeeNum=${employeeEply.employeeNum}&pageNo=${employeeListPagePart.currentPage}">
-								<c:out value="${employeeEply.employeePsnl_kname}" />
-						</a></td>
+						<td>${voePrintRecordPage.recordNumber}</td>
+						<td>${voePrintRecordPage.printDate}</td>
+						<td>${voePrintRecordPage.employeeNum}</td>
+						<td>${voePrintRecordPage.employeeEply_employType}</td>
+						<td>${voePrintRecordPage.employeeEply_depart}</td>
+						<td>${voePrintRecordPage.employeeEply_position}</td>
 					</tr>
 				</c:forEach>
-				<c:if test="${employeeListPagePart.hasEmployeeList()}">
+				<c:if test="${voePrintRecordPage.hasVOERecordList()}">
 					<tr>
 						<td colspan="4"><c:if
-								test="${employeeListPage.startPage > 5}">
+								test="${voePrintRecordPage.startPage > 5}">
 								<a
-									href="printVOE.do?pageNo=${employeeListPagePart.startPage - 5}">[이전]</a>
+									href="employeeInfoManage.do?pageNo=${voePrintRecordPagePart.startPage - 5}">[이전]</a>
 								<!-- custom-button 클래스 추가 -->
-							</c:if> <c:forEach var="pNo" begin="${employeeListPagePart.startPage}"
-								end="${employeeListPagePart.endPage}">
-								<a href="printVOE.do?pageNo=${pNo}">[${pNo}]</a>
+							</c:if> <c:forEach var="pNo" begin="${voePrintRecordPagePart.startPage}"
+								end="${voePrintRecordPagePart.endPage}">
+								<a href="employeeInfoManage.do?pageNo=${pNo}">[${pNo}]</a>
 								<!-- custom-button 클래스 추가 -->
 							</c:forEach> <c:if
-								test="${employeeListPagePart.endPage < employeeListPagePart.totalPages}">
+								test="${voePrintRecordPagePart.endPage < voePrintRecordPagePart.totalPages}">
 								<a
-									href="printVOE.do?pageNo=${employeeListPagePart.startPage + 5}">[다음]</a>
+									href="employeeInfoManage.do?pageNo=${voePrintRecordPagePart.startPage + 5}">[다음]</a>
 								<!-- custom-button 클래스 추가 -->
 							</c:if></td>
 					</tr>
@@ -167,89 +181,5 @@
 			</tbody>
 		</table>
 	</div>
-
-	<!-- 사원정보창 -->
-	<c:if test="${readInfo}">
-		<div class="table-container">
-			<div class="page-answer">
-				<h3>${infoRequestAll.employeePsnl_kname}님의사원정보</h3>
-			</div>
-			<table class="custom-table">
-				<thead>
-					<tr>
-						<th>항목</th>
-						<th>정보</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>사원번호</td>
-						<td>${infoRequestAll.employeeNum}</td>
-					</tr>
-					<tr>
-						<td>국문이름</td>
-						<td>${infoRequestAll.employeePsnl_kname}</td>
-					</tr>
-					<tr>
-						<td>영문이름</td>
-						<td>${infoRequestAll.employeePsnl_ename}</td>
-					</tr>
-					<tr>
-						<td>내국인 외국인</td>
-						<td>${infoRequestAll.employeePsnl_isForeigner}</td>
-					</tr>
-					<tr>
-						<td>주민번호</td>
-						<td>${infoRequestAll.employeePsnl_residentNumber}</td>
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>${infoRequestAll.employeePsnl_adress}</td>
-					</tr>
-					<tr>
-						<td>전화번호</td>
-						<td>${infoRequestAll.employeePsnl_phoneNumber}</td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td>${infoRequestAll.employeePsnl_email}</td>
-					</tr>
-					<tr>
-						<td>SNS계정</td>
-						<td>${infoRequestAll.employeePsnl_sns}</td>
-					</tr>
-					<tr>
-						<td>고용 형태</td>
-						<td>${infoRequestAll.employeeEply_employType}</td>
-					</tr>
-					<tr>
-						<td>부서</td>
-						<td>${infoRequestAll.employeeEply_depart}</td>
-					</tr>
-					<tr>
-						<td>직급</td>
-						<td>${infoRequestAll.employeeEply_position}</td>
-					</tr>
-					<tr>
-						<td>입사날짜</td>
-						<td>${infoRequestAll.employeeEply_join}</td>
-					</tr>
-					<tr>
-						<td>퇴사날짜</td>
-						<td>${infoRequestAll.employeeEply_resignation}</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="div-inline">
-				<form action="printVOE.do" method="POST" class="button-form">
-						<input type="hidden" name="employeeNumPrint"
-							value="${infoRequestAll.employeeNum}" />
-						<input type="hidden" name="pageNo"
-							value="${employeeListPagePart.currentPage}" />
-						<input type="submit" value="인쇄" class="custom-button">
-				</form>
-			</div>
-		</div>
-	</c:if>
 </body>
-</html>
+</html> 

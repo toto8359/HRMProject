@@ -47,7 +47,7 @@
         <!-- 재직증명서 발급 한자안보임-->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">在職証明書発行台帳</a>
+        <a class="menu-item" href="listVOEPrintRecord.do">在職証明書発行台帳</a>
         <!-- 재직증명서 발급대장 한자 안보이고 깨짐-->
         </div>
     </c:if>

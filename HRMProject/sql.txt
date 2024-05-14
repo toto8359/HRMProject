@@ -33,3 +33,12 @@ create table employeeEply(
     employeeEply_join timestamp,--입사날짜
     employeeEply_resignation timestamp--퇴사날짜
 );
+
+drop table VOEPrintRecord
+drop sequence recordNumber_seq;
+create sequence recordNumber_seq;
+create table VOEPrintRecord(
+    recordNumber varchar2(20)primary key,
+    printDate timeStamp,
+    employeeNum varchar2(20)
+);
