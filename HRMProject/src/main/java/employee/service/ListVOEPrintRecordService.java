@@ -12,6 +12,7 @@ public class ListVOEPrintRecordService {
 	VOEPrintRecordDao voePrintRecordDao = new VOEPrintRecordDao();
 	private int size = 10;
 	
+	//재직증명서 발급대장 출력
 	public VOEPrintRecordPage getVOEPrintRecord(int pageNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 

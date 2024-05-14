@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class VOEPrintRecord {
 
+	//재직증명서 발급기록
+	//증명서 문서번호, 발급일시, 발급대상 사원번호
 	private String recordNumber;
 	private Date printDate;
 	private String employeeNum;

@@ -16,6 +16,7 @@ public class ListVOEPrintRecordHandler implements CommandHandler{
 	ListVOEPrintRecordService listVOEPrintRecordService = new ListVOEPrintRecordService(); 
 	VOEPrintRecordDao voePrintRecordDao = new VOEPrintRecordDao();
 
+	//재직증명서 발급대장 출력
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 

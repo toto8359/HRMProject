@@ -4,14 +4,17 @@ import java.util.Date;
 
 public class InfoRequestVOERecord {
 
-	private String recordNumber;
-	private Date printDate;
-	private String employeeNum;
-	private String employeePsnl_kname;
-	private String employeeEply_employType;
-	private String employeeEply_depart;
-	private String employeeEply_position;
+	//재직증명서 발급대장 출력을 위한 VO
+	
+	private String recordNumber; //발급대장 문서번호
+	private Date printDate; //발급일시
+	private String employeeNum; //사원번호
+	private String employeePsnl_kname; //국문이름
+	private String employeeEply_employType; //고용 형태
+	private String employeeEply_depart; //부서
+	private String employeeEply_position; //직급
 
+	//생성자
 	public InfoRequestVOERecord() {
 		super();
 	}
@@ -28,6 +31,7 @@ public class InfoRequestVOERecord {
 		this.employeeEply_position = employeeEply_position;
 	}
 
+	//게터 세터
 	public String getRecordNumber() {
 		return recordNumber;
 	}

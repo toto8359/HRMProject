@@ -66,6 +66,7 @@ public class VOEPrintRecordDao {
 		}
 	}
 
+	// 재직증명서 갯수 확인
 	public int selectCount(Connection conn) throws SQLException {
 	    Statement stmt = null;
 	    ResultSet rs = null;

@@ -9,7 +9,8 @@ import jdbc.connection.ConnectionProvider;
 public class AddPrintRecordService {
 
 	VOEPrintRecordDao voePrintRecordDao = new VOEPrintRecordDao();
-
+	
+	//재직증명서 발급시, 재직증명서 발급대장에 기록 추가
 	public void insertVOEPrintRecord(String employeeNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 

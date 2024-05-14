@@ -117,7 +117,7 @@ public class EmployeeDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-
+	
 	private InfoRequestAll convertEmployeeEply(ResultSet rs) throws SQLException {
 		return new InfoRequestAll(
 				rs.getString("employeeNum"), 
