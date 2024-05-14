@@ -6,6 +6,8 @@ public class VOEPrintRecord {
 
 	//재직증명서 발급기록
 	//증명서 문서번호, 발급일시, 발급대상 사원번호
+	//在職証明書の発行記録
+	//証明書の文書の番号、発行日時、発行対象の社員番号
 	private String recordNumber;
 	private Date printDate;
 	private String employeeNum;
