@@ -78,8 +78,12 @@ public class EmployeeInfoManageHandler implements CommandHandler {
 		// 4.수정버튼 보여주기--------------------------------------------------------------------------------------------------
 		String modifyInfo = req.getParameter("modifyInfo");
 		String employeeNumMopdify = req.getParameter("employeeNumModify");
+		String employeeKnameModify = req.getParameter("employeeKnameModify");
+		String employeeEnameMopdify = req.getParameter("employeeEnameMopdify");
 		if( !(modifyInfo == null || modifyInfo.isEmpty()) ) {
 			req.setAttribute("employeeNumModify", employeeNumMopdify);//사원번호 보여주기
+			req.setAttribute("employeeKnameModify", employeeKnameModify);//국문이름 보여주기
+			req.setAttribute("employeeEnameMopdify", employeeEnameMopdify);//영문이름 보여주기
 			req.setAttribute("modifyInfo", Boolean.TRUE);
 		}
 		// 4.수정버튼 보여주기--------------------------------------------------------------------------------------------------
