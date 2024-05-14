@@ -3,8 +3,8 @@ package employee.service;
 import java.util.List;
 
 //재직증명서 출력 List 페이징을 위한 VO
+// 在職証明書出力リストのページングのためのVO
 public class VOEPrintRecordPage {
-
 	// 속성
 	// 属性
 	private int total;
@@ -22,16 +22,20 @@ public class VOEPrintRecordPage {
 		this.content = content;
 
 		// 저장된 재직증명서 출력기록이 없으면
+		// 保存された在職証明書出力履歴がない場合
 		if (total == 0) {
 			totalPages = 0;
 			startPage = 0;
 			endPage = 0;
 		} else {
 			// 저장된 재직증명서 출력기록이 있으면
+			// 保存された在職証明書出力履歴がある場合
 			totalPages = total / size;
 
 			// 총 재직증명서 출력기록 수를, 한 페이지당 표시 수로 나눠서 나머지가 있으면,
 			// 나머지 표시하기 위해 페이지수 +1
+			// 全在職証明書出力履歴数を、1ページ当たりの表示数で割り、余りがある場合、
+			// 余りを表示するためにページ数に+1
 			if (total % size > 0) {
 				totalPages++;
 			}
@@ -50,6 +54,7 @@ public class VOEPrintRecordPage {
 	}
 
 	// view에서 재직증명서 출력기록 존재 확인
+	// viewで在職証明書出力履歴が存在するか確認する
 	public boolean hasNoVOERecordList() {
 		return total == 0;
 	}
