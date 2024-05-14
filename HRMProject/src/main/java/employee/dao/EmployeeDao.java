@@ -14,8 +14,10 @@ import jdbc.JdbcUtil;
 public class EmployeeDao {
 	
 	//두 테이블의 정보를 한 번에 가져올 때
+	// 2つのテーブルの情報を一度に取得する場合
 	
 	//사원번호로 읽어들이기
+	// 社員番号で読み取る
 	public InfoRequestAll selectByEmployeeNum(Connection conn, String employeeNum) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -55,6 +57,7 @@ public class EmployeeDao {
 	
 	
 	// 사원정보 list를 위한 CRUD - Read
+	// 社員情報リストのためのCRUD - Read
 	public int selectCount(Connection conn) throws SQLException {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -72,6 +75,7 @@ public class EmployeeDao {
 	}
 
 	// 사원정보 list를 위한 CRUD - Read
+	// 社員情報リストのためのCRUD - Read
 	public List<InfoRequestAll> select(Connection conn, int startRow, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
