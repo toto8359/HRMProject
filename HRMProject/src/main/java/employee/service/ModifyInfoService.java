@@ -13,7 +13,9 @@ public class ModifyInfoService {
 	
 	EmployeePsnlDao employeePsnlDao = new EmployeePsnlDao();
 	EmployeeEplyDao employeeEplyDao = new EmployeeEplyDao();
-	
+
+	// 사원정보 업데이트 메소드
+	// 社員情報修正
 	public void modifyInfo(InfoRequestAll employee) {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			
@@ -37,8 +39,6 @@ public class ModifyInfoService {
 					);
 			employeePsnlDao.update(conn, employeePsnl);
 			employeeEplyDao.update(conn, employeeEply);
-			
-			//권한이나, 이외 등에 따라 롤백 가능성 생각해두기
 			
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
