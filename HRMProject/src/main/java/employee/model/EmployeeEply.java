@@ -2,14 +2,15 @@ package employee.model;
 
 public class EmployeeEply {
 
-	private String employeeNum; // 사원번호
-	private String employeeEply_employType; // 고용 형태(정규직, 비정규직)
-	private String employeeEply_depart; // 부서
-	private String employeeEply_position; // 직급
-	private String employeeEply_join; // 입사날짜
-	private String employeeEply_resignation; // 퇴사날짜
+	private String employeeNum; // 사원번호  		// 社員番号
+	private String employeeEply_employType; // 고용 형태(정규직, 비정규직)  // 雇用形態（正社員、非正社員）
+	private String employeeEply_depart; // 부서  		// 部署
+	private String employeeEply_position; // 직급  		// 職位
+	private String employeeEply_join; // 입사날짜  		// 入社日
+	private String employeeEply_resignation; // 퇴사날짜   	// 退社日
 	
 	//생성자
+	// コンストラクタ
 	public EmployeeEply() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -27,6 +28,7 @@ public class EmployeeEply {
 	}
 
 	//게터 세터
+	 // ゲッター・セッター
 	public String getEmployeeNum() {
 		return employeeNum;
 	}
