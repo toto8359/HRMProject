@@ -23,7 +23,7 @@
         <p style="color: black;">${authUser.member_name}様、ようこそ。</p>
         <!-- 님, 환영합니다 -->
         <div class="left-menu-btn">
-        	<a  href="login.do">ログアウトする</a>
+        	<a  href="logout.do">ログアウトする</a>
         	<!-- 로그아웃 하기 -->
         </div>
         <div class="left-menu-btn">

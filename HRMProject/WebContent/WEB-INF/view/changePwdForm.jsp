@@ -22,7 +22,7 @@
         <!-- 뒤로가기 -->
     </div>
         <div class="left-menu-btn">
-        	<a  href="login.do">ログアウト</a>
+        	<a  href="logout.do">ログアウト</a>
         	<!-- 로그아웃 -->
         </div>
         <div class="left-menu-btn">
@@ -38,7 +38,7 @@
        <!-- 인사기록카드 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">在職証明書の発行</a>
+        <a class="menu-item" href="printVOE.do">在職証明書の発行</a>
         <!-- 재직증명서 발급 -->
         </div>
         <div class="left-menu-btn">
