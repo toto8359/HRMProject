@@ -2,17 +2,17 @@ package employee.model;
 
 public class EmployeePsnl {
 
-	private String employeeNum; // 사원번호			// 社員番号
-	private String employeePsnl_kname; // 국문이름		// 国文名
-	private String employeePsnl_ename; // 영문이름		// 英文名
+	private String employeeNum; // 사원번호 // 社員番号
+	private String employeePsnl_kname; // 국문이름 // 国文名
+	private String employeePsnl_ename; // 영문이름 // 英文名
 	private String employeePsnl_isForeigner; // 내국인 외국인 // 内国人・外国人
-	private String employeePsnl_residentNumber; // 주민번호	// 住民番号
-	private String employeePsnl_adress; // 주소		// 住所
-	private String employeePsnl_phoneNumber; // 전화번호	// 電話番号
-	private String employeePsnl_email; // 이메일		// メール
-	private String employeePsnl_sns; // sns계정		// SNSアカウント
+	private String employeePsnl_residentNumber; // 주민번호 // 住民番号
+	private String employeePsnl_adress; // 주소 // 住所
+	private String employeePsnl_phoneNumber; // 전화번호 // 電話番号
+	private String employeePsnl_email; // 이메일 // メール
+	private String employeePsnl_sns; // sns계정 // SNSアカウント
 
-	//생성자
+	// 생성자
 	// コンストラクタ
 	public EmployeePsnl() {
 		super();
@@ -34,7 +34,7 @@ public class EmployeePsnl {
 		this.employeePsnl_sns = employeePsnl_sns;
 	}
 
-	//게터 세터
+	// 게터 세터
 	// ゲッター・セッター
 	public String getEmployeeNum() {
 		return employeeNum;

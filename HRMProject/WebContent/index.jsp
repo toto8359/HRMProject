@@ -70,5 +70,5 @@
         </div>
     </c:if>
 </div>
-</body>
+</body> 
 </html>

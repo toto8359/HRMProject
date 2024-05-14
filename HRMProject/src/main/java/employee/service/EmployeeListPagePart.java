@@ -36,7 +36,7 @@ public class EmployeeListPagePart {
 			// 총 사원정보 수를, 한 페이지당 표시 수로 나눠서 나머지가 있으면,
 			// 나머지 표시하기 위해 페이지수 +1
 			// 総社員情報数を、1ページ当たりの表示数で割って余りがある場合、
-            		// 余りを表示するためにページ数を+1
+			// 余りを表示するためにページ数を+1
 			if (total % size > 0) {
 				totalPages++;
 			}
@@ -54,7 +54,7 @@ public class EmployeeListPagePart {
 		}
 	}
 
-	//view에서 사원정보 존재 확인
+	// view에서 사원정보 존재 확인
 	// ビューで社員情報の存在確認
 	public boolean hasNoEmployeeList() {
 		return total == 0;

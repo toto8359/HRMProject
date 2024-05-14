@@ -7,18 +7,18 @@ import employee.dao.VOEPrintRecordDao;
 import jdbc.connection.ConnectionProvider;
 
 public class AddPrintRecordService {
-	
+
 	VOEPrintRecordDao voePrintRecordDao = new VOEPrintRecordDao();
-	
+
 	public void insertVOEPrintRecord(String employeeNum) {
-		try(Connection conn = ConnectionProvider.getConnection()){
-			
+		try (Connection conn = ConnectionProvider.getConnection()) {
+
 			voePrintRecordDao.insert(conn, employeeNum);
-			
-		}catch (SQLException e) {
+
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-		
+
 	}
 
 }
