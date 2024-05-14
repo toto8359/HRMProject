@@ -549,8 +549,8 @@
 
 			// 삭제 버튼 클릭 시 알람 표시
 			$(".delete-button").click(function() {
-				alert("정보가 삭제되었습니다.");
-				location.reload();
+				var name = $(this).closest('.table-container').find('.employeePsnl_kname').text();
+				showDeleteAlert(name);
 			});
 		});
 
@@ -563,6 +563,12 @@
 		// 수정 알람 표시 함수
 		function showModifyAlert(name) {
 			alert(name + "님의 정보가 수정되었습니다.");
+			location.reload();
+		}
+
+		// 삭제 알람 표시 함수
+		function showDeleteAlert(name) {
+			alert(name + "님의 정보가 삭제되었습니다.");
 			location.reload();
 		}
 
