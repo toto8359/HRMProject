@@ -30,7 +30,7 @@
 	<div class="login-container">
 		<!-- 페이지를 감싸는 컨테이너 -->
 		<!-- ページを包むコンテナ -->
-		<form action="logout.do" method="post" class="module">
+		<form action="login.do" method="post" class="module">
 			<c:if test="${errors.idOrPwNotMatch}">
 				<div class="alert alert-error">>IDとパスワードが一致しません。</div>
 				<!-- 아이디와 암호가 일치하지 않습니다. -->
