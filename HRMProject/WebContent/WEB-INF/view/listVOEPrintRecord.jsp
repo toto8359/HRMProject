@@ -146,7 +146,7 @@
 			<tbody>
 				<c:if test="${voePrintRecordPage.hasNoVOERecordList()}">
 					<tr>
-						<td colspan="6">게시글이 없습니다.</td>
+						<td colspan="7">게시글이 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:forEach var="voePrintRecordPage"
@@ -163,7 +163,7 @@
 				</c:forEach>
 				<c:if test="${voePrintRecordPage.hasVOERecordList()}">
 					<tr>
-						<td colspan="6"><c:if
+						<td colspan="7"><c:if
 								test="${voePrintRecordPage.startPage > 5}">
 								<a
 									href="listVOEPrintRecord.do?pageNo=${voePrintRecordPage.startPage - 5}">[이전]</a>
