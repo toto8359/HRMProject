@@ -43,7 +43,7 @@
         <!-- 인사기록카드 한자깨짐-->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">在職証明書の発行</a>
+        <a class="menu-item" href="printVOE.do">在職証明書の発行</a>
         <!-- 재직증명서 발급 한자안보임-->
         </div>
         <div class="left-menu-btn">
