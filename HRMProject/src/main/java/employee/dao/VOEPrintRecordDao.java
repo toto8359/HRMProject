@@ -16,6 +16,7 @@ import jdbc.JdbcUtil;
 public class VOEPrintRecordDao {
 
     // 재직증명서 인쇄 기록 추가
+    // 在職証明書の印刷記録を追加
     public void insert(Connection conn, String employeeNum) throws SQLException {
         PreparedStatement pstmt = null;
         try {
@@ -28,7 +29,8 @@ public class VOEPrintRecordDao {
         }
     }
 
-    // 재직증명서 List를 위한 CRUD-Read
+    	// 재직증명서 List를 위한 CRUD-Read
+	//在職証明書リストのためのCRUD-Read
 	public List<InfoRequestVOERecord> select(Connection conn, int startRow, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -67,6 +69,7 @@ public class VOEPrintRecordDao {
 	}
 
 	// 재직증명서 갯수 확인
+	// 在職証明書の数を確認
 	public int selectCount(Connection conn) throws SQLException {
 	    Statement stmt = null;
 	    ResultSet rs = null;
