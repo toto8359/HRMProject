@@ -38,8 +38,6 @@ public class ModifyInfoService {
 			employeePsnlDao.update(conn, employeePsnl);
 			employeeEplyDao.update(conn, employeeEply);
 			
-			//권한이나, 이외 등에 따라 롤백 가능성 생각해두기
-			
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
