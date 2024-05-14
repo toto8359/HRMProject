@@ -10,8 +10,75 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+        .table-container {
+            display: inline-block;
+       		 width: auto; /* 테이블 컨테이너의 너비 조정 */
+       	 	margin-right: 5%; /* 테이블 간격 조정 */
+       	 	vertical-align: top; /* 테이블을 상단으로 정렬 */
+        }
+        
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        .custom-table th, .custom-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .custom-table a {
+    		color: inherit; /* 링크의 색상을 부모 요소인 테이블의 글자색과 동일하게 지정 */
+    		text-decoration: none; /* 링크의 밑줄 제거 */
+		}
+
+        .custom-table th {
+            background-color: #808080;
+        }
+
+        .custom-table tbody tr:nth-child(even) {
+            background-color: #808080;
+        }
+
+        /* 버튼 스타일 */
+        .button-form {
+            margin-top: 10px; /* 버튼 간격을 조절합니다 */
+        }
+
+        .custom-button {
+            background-color: #098cc8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 10px; /* 버튼 간격을 조절합니다 */
+        }
+
+        .custom-button:hover {
+            background-color: #21b0f1;
+        }
+        
+        .form-table-spacing {
+        margin-top: 50px; /* 원하는 만큼의 간격을 설정하세요 */
+    }
+    
+    .form-below-table {
+        margin-top: 20px; /* 테이블 아래에 간격을 조정하세요 */
+    }
+    </style>
+
 </head>
 <body>
+
+
 <div class="menu-left">
     <p style="color: black;">${authUser.member_name}님, 안녕하세요.</p>
 	<div class="left-menu-btn">
@@ -42,11 +109,8 @@
         <a class="menu-item" href="article/list.do">제직증명서 발급대장</a>
         </div>
 </div>
-	[사원정보관리]
-	<br />
-	<br />
-	<br />
-	<!-- 안내창 -->
+			
+<%-- 	<!-- 안내창 -->
 	<c:if test="${!empty employeePsnl_kname}">
 		<c:if test="${modifySuccess}">
 			사원 ${employeePsnl_kname}의 사원정보 수정을 완료했습니다.
@@ -57,67 +121,78 @@
 		<c:if test="${deleteSuccess}">
 			사원 ${employeePsnl_kname}의 사원정보 삭제를 완료했습니다.
 		</c:if>
-	</c:if><br/>
+	</c:if><br/> --%>
 
-	사원목록<br/>
 	<!-- 사원정보목록창 -->
-	<table border="1">
-		<tr>
-			<td>사원번호</td>
-			<td>부서</td>
-			<td>직급</td>
-			<td>이름</td>
-		</tr>
-		<c:if test="${employeeListPagePart.hasNoEmployeeList()}">
-			<tr>
-				<td colspan="4">게시글이 없습니다.</td>
-			</tr>
-		</c:if>
-		<c:forEach var="employeeEply" items="${employeeListPagePart.content}"><!-- page의 List<employeeEply> content 뜻 -->
-			<tr>
-				<td>${employeeEply.employeeNum}</td>
-				<td>${employeeEply.employeeEply_depart}</td>
-				<td>${employeeEply.employeeEply_position}</td>
-				<!-- get으로 보내기 -->
-				<td>
-				<a href="employeeInfoManage.do?employeeNum=${employeeEply.employeeNum}&pageNo=${employeeListPagePart.currentPage}"><!-- 나중에 수정해야함 ,employNum으로-->
-						<c:out value="${employeeEply.employeePsnl_kname}" /></a>
-				</td>
-			</tr>
-		</c:forEach>
-		<!-- 페이징 -->
-		<c:if test="${employeeListPagePart.hasEmployeeList()}">
-			<tr>
-				<td colspan="4"><c:if test="${employeeListPage.startPage > 5}">
-						<a href="employeeInfoManage.do?pageNo=${employeeListPagePart.startPage - 5}">[이전]</a>
-					</c:if> <c:forEach var="pNo" begin="${employeeListPagePart.startPage}"
-						end="${employeeListPagePart.endPage}">
-						<a href="employeeInfoManage.do?pageNo=${pNo}">[${pNo}]</a>
-					</c:forEach> <c:if test="${employeeListPagePart.endPage < employeeListPagePart.totalPages}">
-						<a href="employeeInfoManage.do?pageNo=${employeeListPagePart.startPage + 5}">[다음]</a>
-					</c:if></td>
-			</tr>
-		</c:if>
-	</table>
-	<br/>
-	
-	
+<div class="table-container">
+	<div class="page-answer">
+		<h3>사원 목록</h3>
+	</div>
+  <table class="custom-table"> <!-- custom-table 클래스 추가 -->
+    <thead>
+      <tr>
+        <th>사원번호</th>
+        <th>부서</th>
+        <th>직급</th>
+        <th>이름</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:if test="${employeeListPagePart.hasNoEmployeeList()}">
+        <tr>
+          <td colspan="4">게시글이 없습니다.</td>
+        </tr>
+      </c:if>
+      <c:forEach var="employeeEply" items="${employeeListPagePart.content}">
+        <tr>
+          <td>${employeeEply.employeeNum}</td>
+          <td>${employeeEply.employeeEply_depart}</td>
+          <td>${employeeEply.employeeEply_position}</td>
+          <td>
+            <a href="employeeInfoManage.do?employeeNum=${employeeEply.employeeNum}&pageNo=${employeeListPagePart.currentPage}">
+              <c:out value="${employeeEply.employeePsnl_kname}" />
+            </a>
+          </td>
+        </tr>
+      </c:forEach>
+      <c:if test="${employeeListPagePart.hasEmployeeList()}">
+        <tr>
+          <td colspan="4">
+            <c:if test="${employeeListPage.startPage > 5}">
+              <a href="employeeInfoManage.do?pageNo=${employeeListPagePart.startPage - 5}">[이전]</a> <!-- custom-button 클래스 추가 -->
+            </c:if>
+            <c:forEach var="pNo" begin="${employeeListPagePart.startPage}" end="${employeeListPagePart.endPage}">
+              <a href="employeeInfoManage.do?pageNo=${pNo}">[${pNo}]</a> <!-- custom-button 클래스 추가 -->
+            </c:forEach>
+            <c:if test="${employeeListPagePart.endPage < employeeListPagePart.totalPages}">
+              <a href="employeeInfoManage.do?pageNo=${employeeListPagePart.startPage + 5}">[다음]</a> <!-- custom-button 클래스 추가 -->
+            </c:if>
+          </td>
+        </tr>
+      </c:if>
+    </tbody>
+  </table>
 	<!-- 등록창 -->
 	<!-- 등록 버튼을 누른 적이 없으면 or 등록이 완료되면 -->
+	<div class="form-below-table">
 	<form action="employeeInfoManage.do" method="get">
 		<c:if test="${!registerForm}">
 			<input type="hidden" name="registerForm" value="registerForm" />
-			<input type="submit" value="등록">
+			<input type="submit" value="등록" class="custom-button">
 		</c:if>
 	</form>
+  </div>
+</div>
+
+	
 	<!-- 정보입력 후 등록 버튼을 누르면 -->
 	<form action="employeeInfoManage.do" method="POST">
 		<c:if test="${registerForm}">
 			<p>
 			<!-- 수정일 경우, 사원번호는 고정 -->
 			<c:if test="${modifyInfo}">
-				<input type="hidden" name="employeeNum" value="${employeeNumModify}" />
-				사원번호: ${employeeNumModify}
+				<label id="employeeNum-label" for="name">employeeNum</label>
+				<input type="text" name="employeeNum" class="login-input placeholder-gray" value="${employeeNumModify}" readonly="readonly"/>
 			</c:if>
 			<!-- 등록일 경우, 사원번호 입력하도록 -->
 			<c:if test="${!modifyInfo}">
@@ -266,103 +341,114 @@
 			<!-- 등록버튼으로 들어왔으면 등록 -->
 			<c:if test="${!modifyInfo}">
 				<div class="Loginbutton-wrapper">
-					<input type="submit" value="등록" class="btn btn-block btn-primary">
+					<input type="submit" value="등록" class="btn btn-block btn-primary register-button">
 				</div>
 			</c:if>
 			<!-- 수정하기 버튼으로 들어왔으면 수정 -->
 			<c:if test="${modifyInfo}">
 				<input type="hidden" name="modifyInfo" value="modifyInfo" />
 				<div class="Loginbutton-wrapper">
-					<input type="submit" value="수정" class="btn btn-block btn-primary">
+					<input type="submit" value="수정" class="btn btn-block btn-primary modify-button">
 				</div>
 			</c:if>
 
 		</c:if>
 	</form>
-	
 	<!-- 사원정보창 -->
-	<c:if test="${readInfo}">
-		<table>
-	    <tr>
-	        <th>항목</th>
-	        <th>정보</th>
-	    </tr>
-	    <tr>
-	        <td>사원번호</td>
-	        <td>${infoRequestAll.employeeNum}</td>
-	    </tr>
-	    <tr>
-	        <td>국문이름</td>
-	        <td>${infoRequestAll.employeePsnl_kname}</td>
-	    </tr>
-	    <tr>
-	        <td>영문이름</td>
-	        <td>${infoRequestAll.employeePsnl_ename}</td>
-	    </tr>
-	    <tr>
-	        <td>내국인 외국인</td>
-	        <td>${infoRequestAll.employeePsnl_isForeigner}</td>
-	    </tr>
-	    <tr>
-	        <td>주민번호</td>
-	        <td>${infoRequestAll.employeePsnl_residentNumber}</td>
-	    </tr>
-	    <tr>
-	        <td>주소</td>
-	        <td>${infoRequestAll.employeePsnl_adress}</td>
-	    </tr>
-	    <tr>
-	        <td>전화번호</td>
-	        <td>${infoRequestAll.employeePsnl_phoneNumber}</td>
-	    </tr>
-	    <tr>
-	        <td>이메일</td>
-	        <td>${infoRequestAll.employeePsnl_email}</td>
-	    </tr>
-	    <tr>
-	        <td>SNS계정</td>
-	        <td>${infoRequestAll.employeePsnl_sns}</td>
-	    </tr>
-	    <tr>
-	        <td>고용 형태</td>
-	        <td>${infoRequestAll.employeeEply_employType}</td>
-	    </tr>
-	    <tr>
-	        <td>부서</td>
-	        <td>${infoRequestAll.employeeEply_depart}</td>
-	    </tr>
-	    <tr>
-	        <td>직급</td>
-	        <td>${infoRequestAll.employeeEply_position}</td>
-	    </tr>
-	    <tr>
-	        <td>입사날짜</td>
-	        <td>${infoRequestAll.employeeEply_join}</td>
-	    </tr>
-	    <tr>
-	        <td>퇴사날짜</td>
-	        <td>${infoRequestAll.employeeEply_resignation}</td>
-	    </tr>
-		</table>
-		
-		<!-- 수정하기 버튼을 누르면, 등록창(수정창)을 띄우고, 등록창에 등록 말고 수정기능의 수정버튼을 띄운다 -->
-		<form action="employeeInfoManage.do" method="get">
-			<c:if test="${!modifyInfo}">
-				<input type="hidden" name="registerForm" value="registerForm" /><!-- 등록창띄우기 -->
-				<input type="hidden" name="modifyInfo" value="modifyInfo" /><!-- 수정버튼띄우기 -->
-				<input type="hidden" name="employeeNumModify" value="${infoRequestAll.employeeNum}" /><!-- 사원번호 보내기 -->
-				<input type="hidden" name="pageNo" value="${employeeListPagePart.currentPage}" /><!-- 현제 페이지 번호 보내기-->
-				<input type="submit" value="수정">
-			</c:if>
-		</form>
-		<!-- 삭제하기 버튼을 누르면, 삭제한다 -->
-		<form action="employeeInfoManage.do" method="POST">
-				<input type="hidden" name="employeeNumDelete" value="${infoRequestAll.employeeNum}" /><!-- 사원번호 보내기 -->
-				<input type="hidden" name="employeeKnameDelete" value="${infoRequestAll.employeePsnl_kname}" /><!-- 사원이름 -->
-				<input type="hidden" name="pageNo" value="${employeeListPagePart.currentPage}" /><!-- 현제 페이지 번호 보내기-->
-				<input type="submit" value="삭제">
-		</form>
-	</c:if>
+<c:if test="${readInfo}">
+    <div class="table-container">
+    <div class="page-answer">
+		<h3>${infoRequestAll.employeePsnl_kname}님의 사원정보</h3>
+	</div>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th>항목</th>
+                    <th>정보</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>사원번호</td>
+                    <td>${infoRequestAll.employeeNum}</td>
+                </tr>
+                <tr>
+                    <td>국문이름</td>
+                    <td>${infoRequestAll.employeePsnl_kname}</td>
+                </tr>
+            <tr>
+                <td>영문이름</td>
+                <td>${infoRequestAll.employeePsnl_ename}</td>
+            </tr>
+            <tr>
+                <td>내국인 외국인</td>
+                <td>${infoRequestAll.employeePsnl_isForeigner}</td>
+            </tr>
+            <tr>
+                <td>주민번호</td>
+                <td>${infoRequestAll.employeePsnl_residentNumber}</td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>${infoRequestAll.employeePsnl_adress}</td>
+            </tr>
+            <tr>
+                <td>전화번호</td>
+                <td>${infoRequestAll.employeePsnl_phoneNumber}</td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td>${infoRequestAll.employeePsnl_email}</td>
+            </tr>
+            <tr>
+                <td>SNS계정</td>
+                <td>${infoRequestAll.employeePsnl_sns}</td>
+            </tr>
+            <tr>
+                <td>고용 형태</td>
+                <td>${infoRequestAll.employeeEply_employType}</td>
+            </tr>
+            <tr>
+                <td>부서</td>
+                <td>${infoRequestAll.employeeEply_depart}</td>
+            </tr>
+            <tr>
+                <td>직급</td>
+                <td>${infoRequestAll.employeeEply_position}</td>
+            </tr>
+            <tr>
+                <td>입사날짜</td>
+                <td>${infoRequestAll.employeeEply_join}</td>
+            </tr>
+            <tr>
+                <td>퇴사날짜</td>
+                <td>${infoRequestAll.employeeEply_resignation}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="div-inline">
+    <form action="employeeInfoManage.do" method="get" class="button-form">
+        <c:if test="${!modifyInfo}">
+            <input type="hidden" name="registerForm" value="registerForm" />
+            <input type="hidden" name="modifyInfo" value="modifyInfo" />
+            <input type="hidden" name="employeeNumModify" value="${infoRequestAll.employeeNum}" />
+            <input type="hidden" name="pageNo" value="${employeeListPagePart.currentPage}" />
+            <input type="submit" value="수정" class="custom-button">
+        </c:if>
+    </form>
+
+    <!-- 삭제하기 버튼 -->
+    <form action="employeeInfoManage.do" method="POST" class="button-form">
+        <input type="hidden" name="employeeNumDelete" value="${infoRequestAll.employeeNum}" />
+        <input type="hidden" name="employeeKnameDelete" value="${infoRequestAll.employeePsnl_kname}" />
+        <input type="hidden" name="pageNo" value="${employeeListPagePart.currentPage}" />
+        <input type="submit" value="삭제" class="custom-button delete-button">
+    </form>
+    </div>
+   </div>
+
+    <!-- 수정하기 버튼을 누르면, 등록창(수정창)을 띄우고, 등록창에 등록 말고 수정기능의 수정버튼을 띄운다 -->
+</c:if>
 	
 <script>
   $(document).ready(function() {
@@ -373,8 +459,59 @@
       dateFormat: "yy-mm-dd" // 필요한 날짜 형식으로 설정
     });
   });
+  
+  $(document).ready(function() {
+	    // 등록 버튼 클릭 시 알람 표시
+	    $(".register-button").click(function() {
+	        if (!checkFields()) {
+	            var name = $("#employeePsnl_kname").val();
+	            showRegisterAlert(name);
+	        }
+	    });
 
-</script>
+	    // 수정 버튼 클릭 시 알람 표시
+	    $(".modify-button").click(function() {
+	        if (!checkFields()) {
+	            var name = $("#employeePsnl_kname").val();
+	            showModifyAlert(name);
+	        }
+	    });
+
+	    // 삭제 버튼 클릭 시 알람 표시
+	    $(".delete-button").click(function() {
+	        var name = $("#employeePsnl_kname").val();
+	        showDeleteAlert(name);
+	    });
+	});
+
+	// 등록 알람 표시 함수
+	function showRegisterAlert(name) {
+	    alert(name + "님의 정보가 등록되었습니다.");
+	}
+
+	// 수정 알람 표시 함수
+	function showModifyAlert(name) {
+	    alert(name + "님의 정보가 수정되었습니다.");
+	}
+
+	// 삭제 알람 표시 함수
+	function showDeleteAlert(name) {
+	    alert(name + "님의 정보가 삭제되었습니다.");
+	}
+
+	// 필드가 비어 있는지 확인하는 함수
+	function checkFields() {
+    var isEmpty = false;
+    $("input[type='text']").not("[name='employeeEply_resignation']").each(function() {
+        if ($(this).val() === "") {
+            isEmpty = true;
+        }
+    });
+    return isEmpty;
+}
+  </script>
+
+
 
 </body>
 </html>
