@@ -28,8 +28,8 @@ drop table employeeEply;
 create table employeeEply(
     employeeNum varchar2(20) primary key,--사원번호
     employeeEply_employType varchar2(20),--고용 형태(정규직 비정규직)
-    employeeEply_depart varchar2(20),--부서
-    employeeEply_position varchar2(20),--직급
+    employeeEply_depart varchar2(50),--부서
+    employeeEply_position varchar2(50),--직급
     employeeEply_join timestamp,--입사날짜
     employeeEply_resignation timestamp--퇴사날짜
 );
