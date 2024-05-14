@@ -1,5 +1,6 @@
 package employee.command;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +51,9 @@ public class PrintVOEHandler implements CommandHandler{
 
 		// 2.이름 누르면 정보 보여주기------------------------------------------------------------------------------------------
 		String employeeNum = req.getParameter("employeeNum");
-		Date date = new Date();
-		date.getTime();
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(new Date());
 		req.setAttribute("dateToday", date);
 		if( !(employeeNum == null || employeeNum.isEmpty()) ) {
 			InfoRequestAll infoRequestAll = readEmployeeInfoServiece.getInfoRequestAll(employeeNum);
