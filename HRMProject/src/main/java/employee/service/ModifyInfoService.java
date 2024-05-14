@@ -13,7 +13,9 @@ public class ModifyInfoService {
 	
 	EmployeePsnlDao employeePsnlDao = new EmployeePsnlDao();
 	EmployeeEplyDao employeeEplyDao = new EmployeeEplyDao();
-	
+
+	// 사원정보 업데이트 메소드
+	// 社員情報修正
 	public void modifyInfo(InfoRequestAll employee) {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			
