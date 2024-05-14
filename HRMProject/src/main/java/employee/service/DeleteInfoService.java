@@ -11,7 +11,9 @@ public class DeleteInfoService {
 	
 	EmployeePsnlDao employeePsnlDao = new EmployeePsnlDao();
 	EmployeeEplyDao employeeEplyDao = new EmployeeEplyDao();
-	
+
+	// 사원정보 삭제
+	// 社員の情報の削除
 	public void deleteInfo(String employeeNumDelete) {
 		try(Connection conn = ConnectionProvider.getConnection()){
 			
