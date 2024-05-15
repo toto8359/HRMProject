@@ -22,7 +22,7 @@
     </div>
 </div>
 	<div class="module1">
-		<h3>아이디는 ${member.member_id} です。</h3>
+		<h3>IDは ${member.member_id} です。</h3>
 		<!-- 입니다. -->
 	</div>
 	<div class="login-container">
