@@ -192,7 +192,7 @@
 						<td>${infoRequestAll.employeePsnl_ename}</td>
 					</tr>
 					<tr>
-						<td>韓国人 外国人</td>
+						<td>内国人 外国人</td>
 						<td>${infoRequestAll.employeePsnl_isForeigner}</td>
 					</tr>
 					<tr>
@@ -356,8 +356,6 @@ function printTable() {
     //プリントを実行
     newWin.print();
 
-    // 프린트 창이 닫힌 후 새로 열린 탭을 닫도록 지연시간을 설정합니다.
-    //작동안됨... 이유 찾는중...
     setTimeout(function() {
         newWin.close(); // 새로 열린 탭을 닫는다	//新しく開いたタブを閉じる
     }, 2000); 

@@ -275,15 +275,15 @@
 					<!-- Foreigner -->
 					<select name="employeePsnl_isForeigner"
 						id="employeePsnl_isForeigner" class="custom-select">
-						<option value="韓国人"
-							<c:if test="${param.employeePsnl_isForeigner == '韓国人'}">selected</c:if>>韓国人</option>
+						<option value="内国人"
+							<c:if test="${param.employeePsnl_isForeigner == '内国人'}">selected</c:if>>内国人</option>
 							<!-- 내국인 -->
 						<option value="外国人"
 							<c:if test="${param.employeePsnl_isForeigner == '外国人'}">selected</c:if>>外国人</option>
 							<!-- 외국인 -->
 					</select>
 					<c:if test="${errors.employeePsnl_isForeigner}">
-						<div class="alert alert-error">韓国人または外国人を入力してください。</div>
+						<div class="alert alert-error">内国人または外国人を入力してください。</div>
 						<!-- 내국인 외국인 여부를 입력하세요. -->
 					</c:if>
 					<c:if test="${errors.duplicateResidentNumber}">
@@ -510,7 +510,7 @@
 						<td>${infoRequestAll.employeePsnl_ename}</td>
 					</tr>
 					<tr>
-						<td>韓国人 外国人</td>
+						<td>内国人 外国人</td>
 						<!-- 내국인 외국인 -->
 						<td>${infoRequestAll.employeePsnl_isForeigner}</td>
 					</tr>
