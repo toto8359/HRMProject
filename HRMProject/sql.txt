@@ -1,5 +1,4 @@
 --sql문은 여기에 적어둘테니, 다 긁어서 복붙하고 실행
-
 drop table member;
 create table member(
     member_id varchar2(50),
@@ -43,6 +42,7 @@ create table VOEPrintRecord(
     employeeNum varchar2(20)
 );
 
+--더미데이터
 insert	into	employeePsnl	values	(	'10001',	'佐藤真子'	,	'Satou Mako'	,	'内国人'	,	'921103012345'	,	'東京都渋谷区神南1丁目1-1'	,	'01059127684'	,	'asdkfjqwem@naver.com'	,	'@asdkfjqwei'	);
 insert	into	employeePsnl	values	(	'10002',	'田中太郎'	,	'Tanaka Tarou'	,	'内国人'	,	'870507678912'	,	'大阪府大阪市中央区難波5丁目5-5'	,	'01082504367'	,	'alskdfjqew@naver.com'	,	'@alskdfjqwe'	);
 insert	into	employeePsnl	values	(	'10003',	'鈴木美香'	,	'Suzuki Mika'	,	'内国人'	,	'950812123456'	,	'北海道札幌市中央区大通西1丁目1-1'	,	'01034691257'	,	'qowieuryal@naver.com'	,	'@qowieuryalz'	);
