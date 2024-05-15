@@ -34,19 +34,11 @@
         <!-- 사원정보관리 -->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="listEmployeeInfo.do">社員の現況</a>
-        <!-- 사원현황 -->
-        </div>
-        <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">人事記録カード</a>
-        <!-- 인사기록카드 -->
-        </div>
-        <div class="left-menu-btn">
         <a class="menu-item" href="printVOE.do">在職証明書の発行</a>
         <!-- 재직증명서 발급 한자오류-->
         </div>
         <div class="left-menu-btn">
-        <a class="menu-item" href="article/list.do">在職証明書発行台帳</a>
+        <a class="menu-item" href="listVOEPrintRecord.do">在職証明書発行台帳</a>
         <!-- 재직증명서 발급대장 한자오류-->
         </div>
 </div>

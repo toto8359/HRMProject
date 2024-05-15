@@ -100,16 +100,10 @@
 			<a class="menu-item" href="employeeInfoManage.do">사원정보관리</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="listEmployeeInfo.do">사원현황</a>
-		</div>
-		<div class="left-menu-btn">
-			<a class="menu-item" href="article/list.do">인사기록카드</a>
-		</div>
-		<div class="left-menu-btn">
 			<a class="menu-item" href="printVOE.do">제직증명서 발급</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="article/list.do">제직증명서 발급대장</a>
+			<a class="menu-item" href="listVOEPrintRecord.do">제직증명서 발급대장</a>
 		</div>
 	</div>
 
