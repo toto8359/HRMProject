@@ -44,7 +44,6 @@
 				<!-- 찾기 -->
 			</div>
 		</form>
-	</div>
 	<br />
 </body>
 </html>
