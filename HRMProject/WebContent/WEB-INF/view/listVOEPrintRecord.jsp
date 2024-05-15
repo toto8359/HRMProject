@@ -15,9 +15,9 @@
 <style>
 .table-container {
 	display: inline-block;
-	width: auto; /* 테이블 컨테이너의 너비 조정 */
-	margin-right: 5%; /* 테이블 간격 조정 */
-	vertical-align: top; /* 테이블을 상단으로 정렬 */
+	width: auto;
+	margin-right: 5%;
+	vertical-align: top; 
 }
 
 .custom-table {
@@ -33,8 +33,8 @@
 }
 
 .custom-table a {
-	color: inherit; /* 링크의 색상을 부모 요소인 테이블의 글자색과 동일하게 지정 */
-	text-decoration: none; /* 링크의 밑줄 제거 */
+	color: inherit;
+	text-decoration: none;
 }
 
 .custom-table th {
@@ -47,7 +47,7 @@
 
 /* 버튼 스타일 */
 .button-form {
-	margin-top: 10px; /* 버튼 간격을 조절합니다 */
+	margin-top: 10px;
 }
 
 .custom-button {
@@ -61,7 +61,7 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-	margin-right: 10px; /* 버튼 간격을 조절합니다 */
+	margin-right: 10px; 
 }
 
 .custom-button:hover {
@@ -69,11 +69,11 @@
 }
 
 .form-table-spacing {
-	margin-top: 50px; /* 원하는 만큼의 간격을 설정하세요 */
+	margin-top: 50px;
 }
 
 .form-below-table {
-	margin-top: 20px; /* 테이블 아래에 간격을 조정하세요 */
+	margin-top: 20px; 
 }
 </style>
 
@@ -82,27 +82,27 @@
 
 
 	<div class="menu-left">
-		<p style="color: black;">${authUser.member_name}님,안녕하세요.</p>
+		<p style="color: black;">${authUser.member_name}様、ようこそ。</p>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="/HRMProject">HOME</a>
+			<a class="menu-item" href="/HRMProject">ホーム</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="javascript:history.back()">뒤로가기</a>
+			<a class="menu-item" href="javascript:history.back()">戻る</a>
 		</div>
 		<div class="left-menu-btn">
-			<a href="logout.do">로그아웃 하기</a>
+			<a href="logout.do">ログアウトする</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="changePwd.do">암호 변경하기</a>
+			<a class="menu-item" href="changePwd.do">パスワードを変更する</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="listVOEPrintRecord.do">사원정보관리</a>
+			<a class="menu-item" href="listVOEPrintRecord.do">社員情報管理</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="printVOE.do">제직증명서 발급</a>
+			<a class="menu-item" href="printVOE.do">在職証明書の発行</a>
 		</div>
 		<div class="left-menu-btn">
-			<a class="menu-item" href="listVOEPrintRecord.do">제직증명서 발급대장</a>
+			<a class="menu-item" href="listVOEPrintRecord.do">在職証明書発行台帳</a>
 		</div>
 	</div>
 
@@ -122,25 +122,25 @@
 	<!-- 재직증명서 출력대장 -->
 	<div class="table-container">
 		<div class="page-answer">
-			<h3>재직증명서 출력대장</h3>
+			<h3>在職証明書出力台帳</h3>
 		</div>
 		<table class="custom-table">
 			<!-- custom-table 클래스 추가 -->
 			<thead>
 				<tr>
-					<th>재직증명서 번호</th>
-					<th>발급일시</th>
-					<th>사원번호</th>
+					<th>在職証明書番号</th>
+					<th>発行日時</th>
+					<th>社員番号</th>
 					<th>국문성명</th>
-					<th>고용형태</th>
-					<th>부서</th>
-					<th>직급</th>
+					<th>国文声明</th>
+					<th>部署</th>
+					<th>職級</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:if test="${voePrintRecordPage.hasNoVOERecordList()}">
 					<tr>
-						<td colspan="7">게시글이 없습니다.</td>
+						<td colspan="7">投稿がありません。</td>
 					</tr>
 				</c:if>
 				<c:forEach var="voePrintRecordPage"
@@ -160,7 +160,7 @@
 						<td colspan="7"><c:if
 								test="${voePrintRecordPage.startPage > 5}">
 								<a
-									href="listVOEPrintRecord.do?pageNo=${voePrintRecordPage.startPage - 5}">[이전]</a>
+									href="listVOEPrintRecord.do?pageNo=${voePrintRecordPage.startPage - 5}">[前へ]</a>
 								<!-- custom-button 클래스 추가 -->
 							</c:if> <c:forEach var="pNo" begin="${voePrintRecordPage.startPage}"
 								end="${voePrintRecordPage.endPage}">
@@ -169,7 +169,7 @@
 							</c:forEach> <c:if
 								test="${voePrintRecordPage.endPage < voePrintRecordPage.totalPages}">
 								<a
-									href="listVOEPrintRecord.do?pageNo=${voePrintRecordPage.startPage + 5}">[다음]</a>
+									href="listVOEPrintRecord.do?pageNo=${voePrintRecordPage.startPage + 5}">[次へ]</a>
 								<!-- custom-button 클래스 추가 -->
 							</c:if></td>
 					</tr>
