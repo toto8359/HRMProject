@@ -14,6 +14,8 @@
 		<url-pattern>/changePwd.do</url-pattern>
 		<url-pattern>/logout.do</url-pattern>
 		<url-pattern>/employeeInfoManage.do</url-pattern>
+		<url-pattern>/printVOE.do</url-pattern>
+		<url-pattern>/listVOEPrintRecord.do</url-pattern>
 	</filter-mapping>
 
 	<listener>
